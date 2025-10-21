@@ -79,9 +79,9 @@ function Subject({ subject }) {
         <div style={{ marginBottom: '1rem' }}>
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-        {worksheets.map(ws => (
+        {worksheets.map((ws, idx) => (
           <div
-            key={ws._id}
+            key={idx}
             style={{
               border: '1px solid #ddd',
               borderRadius: '8px',
@@ -92,9 +92,13 @@ function Subject({ subject }) {
               boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
               cursor: 'pointer'
             }}
-            onClick={() => window.location.href = `/worksheet/${ws._id}`}
+            onClick={() => {
+              // Pass worksheet metadata via query string
+              const params = new URLSearchParams(ws).toString();
+              window.location.href = `/worksheet/${idx}?${params}`;
+            }}
           >
-            <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.1rem' }}>{ws.title}</h3>
+            <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.1rem' }}>{ws.Filename || 'Untitled'}</h3>
             {/* Optionally show category, grade, etc. here */}
           </div>
         ))}

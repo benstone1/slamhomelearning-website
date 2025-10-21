@@ -41,7 +41,6 @@ function Home() {
             </motion.h1>
             <div className="mt-6 flex gap-3">
               <a href="/parent-resources" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">Explore Parent Resources</a>
-              <a href="/activities" className="px-4 py-2 rounded-xl border border-gray-300 hover:border-emerald-600">Try At‑Home Activities</a>
             </div>
           </div>
           <motion.div
@@ -78,7 +77,7 @@ function Home() {
             </FeatureCard>
             <FeatureCard
               title="Empowering"
-              image="/images/hands.jpg"
+              image="/images/hands.svg"
             >
               Parents play the most important role in a child’s learning journey. We aim to give you the tools, knowledge, and encouragement you need to feel confident guiding your child. When parents feel empowered, children have a greater chance of thriving in school and beyond.
             </FeatureCard>
@@ -93,16 +92,14 @@ function Home() {
             <h2 className="text-2xl font-semibold mb-2">Reading</h2>
             <p className="text-gray-700 mb-4">Practical tips, activities, and printables to build phonics, fluency, and comprehension from kindergarten through 2nd grade.</p>
             <div className="flex gap-3">
-              <a href="/parent-resources" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">Parent Guides</a>
-              <a href="/activities" className="px-4 py-2 rounded-xl border border-gray-300 hover:border-emerald-600">Printable Activities</a>
+              <a href="/reading" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">Printable Activities</a>
             </div>
           </div>
           <div id="math">
             <h2 className="text-2xl font-semibold mb-2">Math</h2>
             <p className="text-gray-700 mb-4">Simple, playful games and everyday strategies to strengthen number sense and early problem-solving skills in your child.</p>
             <div className="flex gap-3">
-              <a href="/parent-resources" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">Parent Guides</a>
-              <a href="/activities" className="px-4 py-2 rounded-xl border border-gray-300 hover:border-emerald-600">At-Home Games</a>
+              <a href="/math" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">At-Home Games</a>
             </div>
           </div>
         </div>
