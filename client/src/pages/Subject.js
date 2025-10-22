@@ -19,17 +19,10 @@ function Subject({ subject }) {
           return obj;
         });
         // Filter by subject
-        let filtered = data.filter(ws => ws.Subject && ws.Subject.toLowerCase() === subject.toLowerCase());
-        // Search and tag filter
-        if (search) {
-          filtered = filtered.filter(ws => ws.Filename && ws.Filename.toLowerCase().includes(search.toLowerCase()));
-        }
-        if (tag) {
-          filtered = filtered.filter(ws => ws.Category && ws.Category.toLowerCase().includes(tag.toLowerCase()));
-        }
+        const filtered = data.filter(ws => ws.Subject && ws.Subject.toLowerCase() === subject.toLowerCase());
         setWorksheets(filtered);
       });
-  }, [search, tag, subject]);
+  }, [subject]);
 
   // Choose image based on subject
   let imageSrc = '';
