@@ -5,6 +5,6 @@
   "scripts": {
     "build": "cd client && npm install && npm run build",
     "start": "cd client && npm start",
-    "deploy": "npx wrangler pages deploy client/build"
+    "deploy": "npx wrangler pages publish client/build --project-name slam-website"
   }
 }

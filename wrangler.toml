@@ -1,10 +1,12 @@
 name = "slam-website"
 compatibility_date = "2025-10-22"
 
-# Configure static site handling
-[site]
-bucket = "./client/build"
-entry-point = "./workers-site"
-
+# Configure static site handling for Pages
 [build]
 command = "npm run build"
+
+[site]
+bucket = "./client/build"
+
+[env.production]
+route = "/"
