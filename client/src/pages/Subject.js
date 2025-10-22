@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 function Subject({ subject }) {
-  const [search, setSearch] = useState('');
-  const [tag, setTag] = useState('');
   const [worksheets, setWorksheets] = useState([]);
 
   useEffect(() => {
