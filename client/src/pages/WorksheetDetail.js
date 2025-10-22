@@ -23,7 +23,7 @@ function WorksheetDetail() {
       </div>
       {/* Download link: assumes PDF is named after Filename and in public/worksheets */}
       <a
-        href={`/worksheets/${encodeURIComponent(worksheet.Filename)}.pdf`}
+        href={`/worksheets/${worksheet['Subject'] ? worksheet['Subject'].toLowerCase() : ''}/${encodeURIComponent(worksheet.Filename)}.pdf`}
         download
         style={{
           display: 'inline-block',

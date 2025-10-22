@@ -78,7 +78,7 @@ function Subject({ subject }) {
         <h2 style={{ marginTop: imageSrc ? '60px' : 0 }}>{subject} Worksheets</h2>
         <div style={{ marginBottom: '1rem' }}>
       </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: 400, margin: '0 auto' }}>
         {worksheets.map((ws, idx) => (
           <div
             key={idx}

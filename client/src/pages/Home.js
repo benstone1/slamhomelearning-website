@@ -13,8 +13,8 @@ const FeatureCard = ({ image, title, children }) => (
         <img
           src={image}
           alt={title}
-          className="h-12 w-12 object-cover rounded-lg"
-          style={{ objectPosition: 'center top' }}
+          className="h-12 w-12 rounded-lg"
+          style={{ objectFit: 'contain' }}
         />
       )}
       <h3 className="text-xl font-semibold">{title}</h3>
@@ -40,7 +40,9 @@ function Home() {
               SLAM's goal is to provide you with tools and resources to make learning at home joyful and meaningful.
             </motion.h1>
             <div className="mt-6 flex gap-3">
-              <a href="/parent-resources" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">Explore Parent Resources</a>
+              <a href="/parent-resources" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">
+                Explore Parent Resources
+              </a>
             </div>
           </div>
           <motion.div
@@ -50,7 +52,11 @@ function Home() {
             className="relative"
           >
             <div className="aspect-[4/3] rounded-3xl bg-white/70 border border-gray-200 shadow-inner flex items-center justify-center overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Learning at home" className="w-full h-full object-cover" />
+              <img
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+                alt="Learning at home"
+                className="w-full h-full object-cover"
+              />
             </div>
           </motion.div>
         </div>
@@ -65,19 +71,19 @@ function Home() {
           <div className="grid md:grid-cols-3 gap-6">
             <FeatureCard
               title="Playful"
-              image="/images/kite.jpg"
+              image={`${process.env.PUBLIC_URL}/images/kite.svg`}
             >
               Children thrive when learning feels like fun rather than work. That’s why we suggest activities and games that spark curiosity, laughter, and joy. When kids are engaged in play, they’re more open to practicing new skills with less stress.
             </FeatureCard>
             <FeatureCard
               title="Experienced"
-              image="/images/tree.jpg"
+              image={`${process.env.PUBLIC_URL}/images/tree.svg`}
             >
               Our ideas are built on years of experience in education, a deep understanding of child development, and practical knowledge of how schools teach reading and math. Everything we share is grounded in trusted, research-based approaches so you can feel reassured that your child is getting meaningful support.
             </FeatureCard>
             <FeatureCard
               title="Empowering"
-              image="/images/hands.svg"
+              image={`${process.env.PUBLIC_URL}/images/hands.svg`}
             >
               Parents play the most important role in a child’s learning journey. We aim to give you the tools, knowledge, and encouragement you need to feel confident guiding your child. When parents feel empowered, children have a greater chance of thriving in school and beyond.
             </FeatureCard>
@@ -90,22 +96,32 @@ function Home() {
         <div className="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-8">
           <div>
             <h2 className="text-2xl font-semibold mb-2">Reading</h2>
-            <p className="text-gray-700 mb-4">Practical tips, activities, and printables to build phonics, fluency, and comprehension from kindergarten through 2nd grade.</p>
+            <p className="text-gray-700 mb-4">
+              Practical tips, activities, and printables to build phonics, fluency, and comprehension from kindergarten through 2nd grade.
+            </p>
             <div className="flex gap-3">
-              <a href="/reading" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">Printable Activities</a>
+              <a href="/reading" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">
+                Printable Activities
+              </a>
             </div>
           </div>
           <div id="math">
             <h2 className="text-2xl font-semibold mb-2">Math</h2>
-            <p className="text-gray-700 mb-4">Simple, playful games and everyday strategies to strengthen number sense and early problem-solving skills in your child.</p>
+            <p className="text-gray-700 mb-4">
+              Simple, playful games and everyday strategies to strengthen number sense and early problem-solving skills in your child.
+            </p>
             <div className="flex gap-3">
-              <a href="/math" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">At-Home Games</a>
+              <a href="/math" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">
+                At-Home Games
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      <footer className="text-center text-sm text-gray-500 py-8">© {new Date().getFullYear()} SLAM • Joyful, manageable, meaningful learning at home</footer>
+      <footer className="text-center text-sm text-gray-500 py-8">
+        © {new Date().getFullYear()} SLAM • Joyful, manageable, meaningful learning at home
+      </footer>
     </div>
   );
 }
