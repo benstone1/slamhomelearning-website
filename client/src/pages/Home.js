@@ -71,19 +71,19 @@ function Home() {
           <div className="grid md:grid-cols-3 gap-6">
             <FeatureCard
               title="Playful"
-              image={`${process.env.PUBLIC_URL}/images/kite.svg`}
+              image="/images/kite.svg"
             >
-              Children thrive when learning feels like fun rather than work. That’s why we suggest activities and games that spark curiosity, laughter, and joy. When kids are engaged in play, they’re more open to practicing new skills with less stress.
+              Children thrive when learning feels like fun rather than work. That's why we suggest activities and games that spark curiosity, laughter, and joy. When kids are engaged in play, they're more open to practicing new skills with less stress.
             </FeatureCard>
             <FeatureCard
               title="Experienced"
-              image={`${process.env.PUBLIC_URL}/images/tree.svg`}
+              image="/images/tree.svg"
             >
               Our ideas are built on years of experience in education, a deep understanding of child development, and practical knowledge of how schools teach reading and math. Everything we share is grounded in trusted, research-based approaches so you can feel reassured that your child is getting meaningful support.
             </FeatureCard>
             <FeatureCard
               title="Empowering"
-              image={`${process.env.PUBLIC_URL}/images/hands.svg`}
+              image="/images/hands.svg"
             >
               Parents play the most important role in a child’s learning journey. We aim to give you the tools, knowledge, and encouragement you need to feel confident guiding your child. When parents feel empowered, children have a greater chance of thriving in school and beyond.
             </FeatureCard>
