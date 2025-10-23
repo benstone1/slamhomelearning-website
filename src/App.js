@@ -5,7 +5,6 @@ import About from './pages/About';
 import Subject from './pages/Subject';
 import WorksheetDetail from './pages/WorksheetDetail';
 import ParentResources from './pages/ParentResources';
-import Activities from './pages/Activities';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,8 +22,12 @@ function Navbar() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo/Brand */}
-          <Link to="/" className="font-bold text-xl text-emerald-700" onClick={closeMenu}>
-            SLAM
+          <Link to="/" className="flex items-center" onClick={closeMenu}>
+            <img 
+              src="/images/slam-logo.png" 
+              alt="SLAM - Supporting Literacy And Math" 
+              className="h-16 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -37,9 +40,6 @@ function Navbar() {
             </Link>
             <Link to="/math" className="text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md font-medium">
               Math
-            </Link>
-            <Link to="/activities" className="text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md font-medium">
-              Activities
             </Link>
             <Link to="/parent-resources" className="text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md font-medium">
               Parent Resources
@@ -93,13 +93,6 @@ function Navbar() {
                 Math
               </Link>
               <Link
-                to="/activities"
-                className="block text-gray-700 hover:text-emerald-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
-                onClick={closeMenu}
-              >
-                Activities
-              </Link>
-              <Link
                 to="/parent-resources"
                 className="block text-gray-700 hover:text-emerald-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
                 onClick={closeMenu}
@@ -130,7 +123,6 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/math" element={<Subject subject="Math" />} />
         <Route path="/reading" element={<Subject subject="Reading" />} />
-        <Route path="/activities" element={<Activities />} />
         <Route path="/worksheet/:id" element={<WorksheetDetail />} />
         <Route path="/parent-resources" element={<ParentResources />} />
       </Routes>
