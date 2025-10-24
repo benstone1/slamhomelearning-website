@@ -51,11 +51,11 @@ function Home() {
             transition={{ duration: 0.4 }}
             className="relative"
           >
-            <div className="aspect-[4/3] rounded-3xl bg-white/70 border border-gray-200 shadow-inner flex items-center justify-center overflow-hidden">
+            <div className="aspect-[4/3] rounded-3xl border border-gray-200 shadow-inner flex items-center justify-center overflow-hidden" style={{backgroundColor: '#F6F6F6'}}>
               <img
-                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
-                alt="Learning at home"
-                className="w-full h-full object-cover"
+                src="/images/slam-logo.png"
+                alt="SLAM Home Learning logo"
+                className="w-full h-full object-contain p-8"
               />
             </div>
           </motion.div>
