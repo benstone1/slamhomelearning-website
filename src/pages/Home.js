@@ -53,7 +53,7 @@ function Home() {
           >
             <div className="aspect-[4/3] rounded-3xl bg-white border border-gray-200 shadow-inner flex items-center justify-center overflow-hidden">
               <img
-                src="/images/slam-logo.png"
+                src="/images/slam-logo_new.png"
                 alt="SLAM Home Learning logo"
                 className="w-full h-full object-contain p-8"
               />

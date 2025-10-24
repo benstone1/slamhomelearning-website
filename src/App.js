@@ -24,7 +24,7 @@ function Navbar() {
           {/* Logo/Brand */}
           <Link to="/" className="flex items-center" onClick={closeMenu}>
             <img 
-              src="/images/slam-logo.png" 
+              src="/images/slam-logo_new.png" 
               alt="SLAM - Supporting Literacy And Math" 
               className="h-16 w-auto"
             />
