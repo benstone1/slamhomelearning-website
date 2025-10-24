@@ -37,7 +37,7 @@ function Home() {
               transition={{ duration: 0.4 }}
               className="text-3xl md:text-4xl font-bold leading-tight mb-4"
             >
-              SLAM's goal is to provide you with tools and resources to make learning at home joyful and meaningful.
+              SLAM (Supporting Literacy And Math) provides you with tools and resources to make learning at home fun.
             </motion.h1>
             <div className="mt-6 flex gap-3">
               <a href="/parent-resources" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">
@@ -51,7 +51,7 @@ function Home() {
             transition={{ duration: 0.4 }}
             className="relative"
           >
-            <div className="aspect-[4/3] rounded-3xl border border-gray-200 shadow-inner flex items-center justify-center overflow-hidden" style={{backgroundColor: '#F6F6F6'}}>
+            <div className="aspect-[4/3] rounded-3xl bg-white border border-gray-200 shadow-inner flex items-center justify-center overflow-hidden">
               <img
                 src="/images/slam-logo.png"
                 alt="SLAM Home Learning logo"
@@ -120,7 +120,7 @@ function Home() {
       </section>
 
       <footer className="text-center text-sm text-gray-500 py-8">
-        © {new Date().getFullYear()} SLAM • Joyful, manageable, meaningful learning at home
+        © {new Date().getFullYear()} SLAM • Supporting Literacy And Math learning at home
       </footer>
     </div>
   );
