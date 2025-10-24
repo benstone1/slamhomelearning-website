@@ -53,9 +53,9 @@ function Home() {
           >
             <div className="aspect-[4/3] rounded-3xl border border-gray-200 shadow-inner flex items-center justify-center overflow-hidden" style={{backgroundColor: '#F6F6F6'}}>
               <img
-                src="/images/slam-logo.png"
-                alt="SLAM Home Learning logo"
-                className="w-full h-full object-contain p-8"
+                src="/images/home_logo_reading.jpg"
+                alt="SLAM Home Learning - Reading at home"
+                className="w-full h-full object-cover"
               />
             </div>
           </motion.div>
