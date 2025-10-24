@@ -1,21 +1,80 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 
+// Helper function to parse CSV lines with proper quote handling
+function parseCSVLine(line) {
+  const result = [];
+  let current = '';
+  let inQuotes = false;
+  
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    
+    if (char === '"') {
+      inQuotes = !inQuotes;
+    } else if (char === ',' && !inQuotes) {
+      // Remove surrounding quotes if present and trim
+      let value = current.trim();
+      if (value.startsWith('"') && value.endsWith('"')) {
+        value = value.slice(1, -1);
+      }
+      result.push(value);
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  
+  // Handle the last value
+  let value = current.trim();
+  if (value.startsWith('"') && value.endsWith('"')) {
+    value = value.slice(1, -1);
+  }
+  result.push(value);
+  return result;
+}
+
 function Subject({ subject }) {
   const [worksheets, setWorksheets] = useState([]);
+
+  // Function to parse and format grade levels
+  const formatGradeLevel = (gradeString) => {
+    if (!gradeString) return '';
+    
+    // Remove quotes and extra spaces
+    const cleanGrade = gradeString.replace(/['"]/g, '').trim();
+    
+    // Handle single grades
+    if (cleanGrade === 'K') return 'K';
+    if (cleanGrade.match(/^\d+$/)) return `Grade ${cleanGrade}`;
+    
+    // Handle multiple grades (e.g., "K, 1", "K, 1, 2")
+    const grades = cleanGrade.split(',').map(g => g.trim()).filter(g => g);
+    if (grades.length > 1) {
+      const formattedGrades = grades.map(g => {
+        if (g === 'K') return 'K';
+        if (g.match(/^\d+$/)) return g;
+        return g;
+      });
+      return formattedGrades.join(', ');
+    }
+    
+    // Default case
+    return cleanGrade;
+  };
 
   useEffect(() => {
     fetch('/worksheets/worksheet_metadata.csv')
       .then(res => res.text())
       .then(text => {
-        // Parse CSV
+        // Parse CSV properly handling quoted values
         const lines = text.split('\n').filter(line => line.trim());
-        const headers = lines[0].split(',').map(h => h.trim());
+        const headers = parseCSVLine(lines[0]);
         const data = lines.slice(1).map(line => {
-          const values = line.split(',');
+          const values = parseCSVLine(line);
           const obj = {};
           headers.forEach((h, i) => {
-            obj[h] = values[i] ? values[i].trim() : '';
+            obj[h] = values[i] || '';
           });
           return obj;
         });
@@ -125,11 +184,17 @@ function Subject({ subject }) {
                         </div>
                       </div>
                       {ws['Grade Level'] && (
-                        <span className="text-sm text-gray-500 font-medium">
-                          {ws['Grade Level'] === 'K' ? 'K' : 
-                           ws['Grade Level'].toString().toLowerCase().includes('k') ? ws['Grade Level'].replace(/grade\s*/i, '').trim() :
-                           `Grade ${ws['Grade Level']}`}
-                        </span>
+                        <div className="flex flex-wrap gap-1">
+                          {ws['Grade Level'].replace(/['"]/g, '').split(',').map((grade, idx) => {
+                            const cleanGrade = grade.trim();
+                            const displayGrade = cleanGrade === 'K' ? 'K' : cleanGrade.match(/^\d+$/) ? `Grade ${cleanGrade}` : cleanGrade;
+                            return (
+                              <span key={idx} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full font-medium">
+                                {displayGrade}
+                              </span>
+                            );
+                          })}
+                        </div>
                       )}
                     </div>
                     

@@ -11,6 +11,32 @@ function WorksheetDetail() {
     worksheet[key] = value;
   }
 
+  // Function to parse and format grade levels
+  const formatGradeLevel = (gradeString) => {
+    if (!gradeString) return '';
+    
+    // Remove quotes and extra spaces
+    const cleanGrade = gradeString.replace(/['"]/g, '').trim();
+    
+    // Handle single grades
+    if (cleanGrade === 'K') return 'K';
+    if (cleanGrade.match(/^\d+$/)) return `Grade ${cleanGrade}`;
+    
+    // Handle multiple grades (e.g., "K, 1", "K, 1, 2")
+    const grades = cleanGrade.split(',').map(g => g.trim()).filter(g => g);
+    if (grades.length > 1) {
+      const formattedGrades = grades.map(g => {
+        if (g === 'K') return 'K';
+        if (g.match(/^\d+$/)) return g;
+        return g;
+      });
+      return formattedGrades.join(', ');
+    }
+    
+    // Default case
+    return cleanGrade;
+  };
+
   if (!worksheet.Filename) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-sky-50 to-emerald-50 flex items-center justify-center">
@@ -78,10 +104,16 @@ function WorksheetDetail() {
               {subject}
             </div>
             {worksheet['Grade Level'] && (
-              <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-700">
-                {worksheet['Grade Level'] === 'K' ? 'K' : 
-                 worksheet['Grade Level'].toString().toLowerCase().includes('k') ? worksheet['Grade Level'].replace(/grade\s*/i, '').trim() :
-                 `Grade ${worksheet['Grade Level']}`}
+              <div className="flex flex-wrap gap-2">
+                {worksheet['Grade Level'].replace(/['"]/g, '').split(',').map((grade, idx) => {
+                  const cleanGrade = grade.trim();
+                  const displayGrade = cleanGrade === 'K' ? 'K' : cleanGrade.match(/^\d+$/) ? `Grade ${cleanGrade}` : cleanGrade;
+                  return (
+                    <div key={idx} className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-700">
+                      {displayGrade}
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
