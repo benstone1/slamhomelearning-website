@@ -5,6 +5,7 @@ import About from './pages/About';
 import Subject from './pages/Subject';
 import WorksheetDetail from './pages/WorksheetDetail';
 import ParentResources from './pages/ParentResources';
+import Videos from './pages/Videos';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,6 +41,9 @@ function Navbar() {
             </Link>
             <Link to="/math" className="text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md font-medium">
               Math
+            </Link>
+            <Link to="/videos" className="text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md font-medium">
+              Videos
             </Link>
             <Link to="/parent-resources" className="text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md font-medium">
               Parent Resources
@@ -93,6 +97,13 @@ function Navbar() {
                 Math
               </Link>
               <Link
+                to="/videos"
+                className="block text-gray-700 hover:text-emerald-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
+                onClick={closeMenu}
+              >
+                Videos
+              </Link>
+              <Link
                 to="/parent-resources"
                 className="block text-gray-700 hover:text-emerald-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
                 onClick={closeMenu}
@@ -123,6 +134,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/math" element={<Subject subject="Math" />} />
         <Route path="/reading" element={<Subject subject="Reading" />} />
+        <Route path="/videos" element={<Videos />} />
         <Route path="/worksheet/:id" element={<WorksheetDetail />} />
         <Route path="/parent-resources" element={<ParentResources />} />
       </Routes>

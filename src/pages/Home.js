@@ -36,12 +36,13 @@ function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
               className="text-3xl md:text-4xl font-bold leading-tight mb-4"
+              style={{ color: '#1E90D2' }}
             >
               SLAM (Supporting Literacy And Math) provides you with tools and resources to make learning at home fun.
             </motion.h1>
             <div className="mt-6 flex gap-3">
-              <a href="/parent-resources" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">
-                Explore Parent Resources
+              <a href="/videos" className="px-4 py-2 rounded-xl shadow bg-yellow-500 text-white hover:bg-yellow-600">
+                Explore SLAM Videos
               </a>
             </div>
           </div>
@@ -65,7 +66,7 @@ function Home() {
       {/* Principles */}
       <section id="principles" className="bg-white/70 border-y border-gray-100">
         <div className="max-w-6xl mx-auto px-4 py-12">
-          <p className="text-center text-gray-700 mb-8 max-w-2xl mx-auto text-xl font-semibold">
+          <p className="text-center mb-8 max-w-2xl mx-auto text-2xl font-semibold" style={{ color: '#1E90D2' }}>
             At the heart of everything we do at SLAM, we follow three guiding principles which shape the way we support families.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
@@ -91,36 +92,8 @@ function Home() {
         </div>
       </section>
 
-      {/* Reading & Math quick links */}
-      <section id="reading" className="bg-white/70 border-y border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-8">
-          <div>
-            <h2 className="text-2xl font-semibold mb-2">Reading</h2>
-            <p className="text-gray-700 mb-4">
-              Practical tips, activities, and printables to build phonics, fluency, and comprehension from kindergarten through 2nd grade.
-            </p>
-            <div className="flex gap-3">
-              <a href="/reading" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">
-                Printable Activities
-              </a>
-            </div>
-          </div>
-          <div id="math">
-            <h2 className="text-2xl font-semibold mb-2">Math</h2>
-            <p className="text-gray-700 mb-4">
-              Simple, playful games and everyday strategies to strengthen number sense and early problem-solving skills in your child.
-            </p>
-            <div className="flex gap-3">
-              <a href="/math" className="px-4 py-2 rounded-xl shadow bg-emerald-600 text-white hover:bg-emerald-700">
-                At-Home Games
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <footer className="text-center text-sm text-gray-500 py-8">
-        © {new Date().getFullYear()} SLAM • Supporting Literacy And Math learning at home
+        © {new Date().getFullYear()} SLAM • Supporting Literacy And Math Learning at Home
       </footer>
     </div>
   );
