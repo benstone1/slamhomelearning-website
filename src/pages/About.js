@@ -68,7 +68,7 @@ function About() {
               />
             </div>
             <div className="flex-1">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">About Jeannine</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">About Jeannine (Co-Founder)</h2>
               <div className="space-y-6 text-gray-700 leading-relaxed">
             <p>
               Jeannine is a dedicated advocate for educational equity, with extensive experience supporting 
@@ -77,10 +77,7 @@ function About() {
               Education Plan) process to help them achieve their goals.
             </p>
             <p>
-              Recognizing the disparities in access to quality education, Jeannine co-founded Supporting 
-              Literacy and Math (SLAM), an initiative focused on delivering high-quality reading and math 
-              instruction to students in under-resourced communities. Her commitment to educational 
-              empowerment extend to roles as a board member of VOCEL (Viewing Our Children as 
+              Her commitment to educational empowerment extend to roles as a board member of VOCEL (Viewing Our Children as 
               Emerging Leaders) and the Adult Down Syndrome Center (ADSC).
             </p>
             <p>
@@ -102,17 +99,14 @@ function About() {
         >
           <div className="flex flex-col md:flex-row gap-8 items-start">
             <div className="flex-shrink-0">
-              <div className="w-48 h-48 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 shadow-lg flex items-center justify-center">
-                <div className="text-center">
-                  <svg className="w-16 h-16 text-gray-400 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                  </svg>
-                  <p className="text-xs text-gray-500 font-medium">Photo<br/>Coming Soon</p>
-                </div>
-              </div>
+              <img
+                src="/images/Lisbeth_Stone.jpg"
+                alt="Lisbeth Stone"
+                className="w-48 h-48 rounded-2xl object-cover shadow-lg"
+              />
             </div>
             <div className="flex-1">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">About Lisbeth</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">About Lisbeth (Co-Founder)</h2>
               <div className="space-y-6 text-gray-700 leading-relaxed">
             <p>
               Lisbeth holds master's degrees in Teaching and in Learning Disabilities. With over 30 
