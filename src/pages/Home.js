@@ -41,7 +41,7 @@ function Home() {
               SLAM (Supporting Literacy And Math) provides you with tools and resources to make learning at home fun.
             </motion.h1>
             <div className="mt-6 flex gap-3">
-              <a href="/videos" className="px-4 py-2 rounded-xl shadow bg-yellow-500 text-white hover:bg-yellow-600">
+              <a href="/videos" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#F9281B'}}>
                 Explore SLAM Videos
               </a>
             </div>
@@ -77,14 +77,14 @@ function Home() {
               Children thrive when learning feels like fun rather than work. That's why we suggest activities and games that spark curiosity, laughter, and joy. When kids are engaged in play, they're more open to practicing new skills with less stress.
             </FeatureCard>
             <FeatureCard
-              title="Experienced"
-              image="/images/tree.svg"
+              title="Research-Based"
+              image="/images/science.svg"
             >
               Our ideas are built on years of experience in education, a deep understanding of child development, and practical knowledge of how schools teach reading and math. Everything we share is grounded in trusted, research-based approaches so you can feel reassured that your child is getting meaningful support.
             </FeatureCard>
             <FeatureCard
-              title="Empowering"
-              image="/images/hands.svg"
+              title="Accessible"
+              image="/images/open_door.svg"
             >
               Parents play the most important role in a child’s learning journey. We aim to give you the tools, knowledge, and encouragement you need to feel confident guiding your child. When parents feel empowered, children have a greater chance of thriving in school and beyond.
             </FeatureCard>
