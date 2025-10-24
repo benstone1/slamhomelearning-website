@@ -64,7 +64,7 @@ function Subject({ subject }) {
   };
 
   useEffect(() => {
-    fetch('/worksheets/worksheet_metadata.csv')
+    fetch(`/worksheets/worksheet_metadata.csv?v=${Date.now()}`)
       .then(res => res.text())
       .then(text => {
         // Parse CSV properly handling quoted values

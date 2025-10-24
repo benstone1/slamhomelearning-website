@@ -62,7 +62,7 @@ function Videos() {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    fetch('/worksheets/worksheet_metadata.csv')
+    fetch(`/worksheets/worksheet_metadata.csv?v=${Date.now()}`)
       .then(res => res.text())
       .then(text => {
         const lines = text.split('\n').filter(line => line.trim());
