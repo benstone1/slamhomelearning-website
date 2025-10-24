@@ -59,8 +59,17 @@ function About() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 mb-12"
         >
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">About Jeannine</h2>
-          <div className="space-y-6 text-gray-700 leading-relaxed">
+          <div className="flex flex-col md:flex-row gap-8 items-start">
+            <div className="flex-shrink-0">
+              <img
+                src="/images/Jeannine_Cleary.jpg"
+                alt="Jeannine Cleary"
+                className="w-48 h-48 rounded-2xl object-cover shadow-lg"
+              />
+            </div>
+            <div className="flex-1">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">About Jeannine</h2>
+              <div className="space-y-6 text-gray-700 leading-relaxed">
             <p>
               Jeannine is a dedicated advocate for educational equity, with extensive experience supporting 
               children with diverse learning needs. As a parent, she actively guided her children through their 
@@ -79,6 +88,8 @@ function About() {
               SitStayRead and serves as a one-on-one tutor for first graders in an after-school program, 
               continuing her hands-on support for young learners.
             </p>
+              </div>
+            </div>
           </div>
         </motion.div>
 
@@ -89,8 +100,20 @@ function About() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100"
         >
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">About Lisbeth</h2>
-          <div className="space-y-6 text-gray-700 leading-relaxed">
+          <div className="flex flex-col md:flex-row gap-8 items-start">
+            <div className="flex-shrink-0">
+              <div className="w-48 h-48 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 shadow-lg flex items-center justify-center">
+                <div className="text-center">
+                  <svg className="w-16 h-16 text-gray-400 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                  <p className="text-xs text-gray-500 font-medium">Photo<br/>Coming Soon</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex-1">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">About Lisbeth</h2>
+              <div className="space-y-6 text-gray-700 leading-relaxed">
             <p>
               Lisbeth holds master's degrees in Teaching and in Learning Disabilities. With over 30 
               years of experience in education, she has supported children from preschool through 
@@ -108,6 +131,8 @@ function About() {
               Outside of her professional work, Lisbeth volunteers as a mediator and enjoys spending time 
               with family and friends. She also enjoys reading, hiking, cooking, and traveling.
             </p>
+              </div>
+            </div>
           </div>
         </motion.div>
       </section>

@@ -3,6 +3,32 @@ import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 
+// Helper function to extract YouTube video ID from URL
+function getYouTubeVideoId(url) {
+  if (!url) return null;
+  const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[7].length === 11) ? match[7] : null;
+}
+
+// YouTube embed component
+function YouTubeEmbed({ videoId, title }) {
+  if (!videoId) return null;
+  
+  return (
+    <div className="relative w-full h-0 pb-[56.25%] rounded-xl overflow-hidden shadow-lg mb-6">
+      <iframe
+        className="absolute top-0 left-0 w-full h-full"
+        src={`https://www.youtube.com/embed/${videoId}`}
+        title={title || "Educational Video"}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+    </div>
+  );
+}
+
 function WorksheetDetail() {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -124,19 +150,16 @@ function WorksheetDetail() {
           </h1>
 
           {/* Video Section */}
-          {worksheet['Video Title'] && worksheet['Video Title'] !== 'n/a' && (
-            <div className="bg-red-50 border border-red-100 rounded-2xl p-6 mb-8">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0">
-                  <svg className="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Related Video</h3>
-                  <p className="text-gray-700">{worksheet['Video Title']}</p>
-                </div>
-              </div>
+          {worksheet['Video Link'] && worksheet['Video Link'] !== 'n/a' && worksheet['Video Link'].trim() !== '' && (
+            <div className="mb-8">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Related Video</h3>
+              {worksheet['Video Title'] && worksheet['Video Title'] !== 'n/a' && (
+                <p className="text-gray-700 mb-4 text-lg">{worksheet['Video Title']}</p>
+              )}
+              <YouTubeEmbed 
+                videoId={getYouTubeVideoId(worksheet['Video Link'])} 
+                title={worksheet['Video Title']} 
+              />
             </div>
           )}
 
@@ -170,14 +193,16 @@ function WorksheetDetail() {
                   ← Back to {subject}
                 </Link>
                 <a
-                  href={`/worksheets/${subject ? subject.toLowerCase() : ''}/${encodeURIComponent(worksheet.Filename)}.pdf`}
-                  download
+                  href={`/worksheets/${worksheet.Subject ? worksheet.Subject.toLowerCase() : ''}/${encodeURIComponent(worksheet.Filename)}.pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                   </svg>
-                  Download PDF
+                  View PDF
                 </a>
               </div>
             </div>

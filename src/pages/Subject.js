@@ -198,18 +198,21 @@ function Subject({ subject }) {
                       )}
                     </div>
                     
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-emerald-700 transition-colors line-clamp-2">
-                      {ws.Filename || 'Untitled'}
-                    </h3>
-                    
-                    {ws['Video Title'] && ws['Video Title'] !== 'n/a' && (
-                      <div className="flex items-center text-sm text-gray-600 mb-3">
-                        <svg className="w-4 h-4 mr-2 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
-                        </svg>
-                        <span className="truncate">{ws['Video Title']}</span>
-                      </div>
-                    )}
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors line-clamp-2 flex-1">
+                        {ws.Filename || 'Untitled'}
+                      </h3>
+                      {ws['Video Link'] && ws['Video Link'] !== 'n/a' && ws['Video Link'].trim() !== '' && (
+                        <div className="ml-2 flex-shrink-0">
+                          <div className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+                            </svg>
+                            Video
+                          </div>
+                        </div>
+                      )}
+                    </div>
                     
                     <div className="flex items-center justify-end mt-auto pt-4">
                       <div className="flex items-center text-emerald-600 group-hover:text-emerald-700 transition-colors">
