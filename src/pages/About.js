@@ -13,8 +13,8 @@ function About() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              About
+            <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: '#1E90D2' }}>
+              About Us
             </h1>
           </motion.div>
         </div>
@@ -28,7 +28,7 @@ function About() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 mb-12"
         >
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">About SLAM</h2>
+          <h2 className="text-3xl font-bold mb-6" style={{ color: '#1E90D2' }}>About SLAM</h2>
           <div className="space-y-6 text-gray-700 leading-relaxed">
             <p>
               SLAM was originally created to address the needs of the youngest learners from kindergarten 
@@ -68,7 +68,7 @@ function About() {
               />
             </div>
             <div className="flex-1">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">About Jeannine (Co-Founder)</h2>
+              <h2 className="text-3xl font-bold mb-6" style={{ color: '#1E90D2' }}>About Jeannine (Co-Founder)</h2>
               <div className="space-y-6 text-gray-700 leading-relaxed">
             <p>
               Jeannine is a dedicated advocate for educational equity, with extensive experience supporting 
@@ -106,7 +106,7 @@ function About() {
               />
             </div>
             <div className="flex-1">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">About Lisbeth (Co-Founder)</h2>
+              <h2 className="text-3xl font-bold mb-6" style={{ color: '#1E90D2' }}>About Lisbeth (Co-Founder)</h2>
               <div className="space-y-6 text-gray-700 leading-relaxed">
             <p>
               Lisbeth holds master's degrees in Teaching and in Learning Disabilities. With over 30 
@@ -137,7 +137,7 @@ function About() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 mt-12 text-center"
         >
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Get in Touch</h2>
+          <h2 className="text-3xl font-bold mb-6" style={{ color: '#1E90D2' }}>Get in Touch</h2>
           <p className="text-gray-700 mb-4 leading-relaxed">
             Have questions or want to learn more about SLAM? We'd love to hear from you.
           </p>

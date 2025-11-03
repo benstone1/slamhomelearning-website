@@ -131,7 +131,7 @@ function Subject({ subject }) {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#1E90D2' }}>
               {subject} Resources
             </h1>
             <p className="text-xl text-gray-700 max-w-2xl mx-auto">
@@ -152,7 +152,7 @@ function Subject({ subject }) {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-center"
         >
-          <h2 className="text-2xl font-semibold text-gray-900 mb-8">
+          <h2 className="text-2xl font-semibold mb-8" style={{ color: '#1E90D2' }}>
             Select a Grade Level
           </h2>
           <div className="flex flex-wrap justify-center gap-4">

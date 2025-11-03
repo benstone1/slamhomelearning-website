@@ -49,7 +49,7 @@ function Navbar() {
               Parent Resources
             </Link>
             <Link to="/about" className="text-gray-700 hover:text-emerald-600 px-3 py-2 rounded-md font-medium">
-              About
+              About Us
             </Link>
           </div>
 
@@ -115,7 +115,7 @@ function Navbar() {
                 className="block text-gray-700 hover:text-emerald-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
                 onClick={closeMenu}
               >
-                About
+                About Us
               </Link>
             </div>
           </div>

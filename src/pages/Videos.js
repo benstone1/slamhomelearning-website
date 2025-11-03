@@ -134,8 +134,8 @@ function Videos() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Video Resources
+            <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#1E90D2' }}>
+              Videos
             </h1>
             <p className="text-xl text-gray-700 max-w-2xl mx-auto">
               Educational videos and tutorials to support learning at home.
