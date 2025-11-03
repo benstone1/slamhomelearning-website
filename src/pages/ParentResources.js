@@ -246,7 +246,7 @@ function ParentResources() {
               Parent Resources
             </h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-              Discover trusted organizations, websites, and helpful guides to support your child's learning journey.
+              Discover trusted organizations, websites, and helpful guides to support your child.
             </p>
           </motion.div>
         </div>
@@ -260,7 +260,7 @@ function ParentResources() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-center"
         >
-          <h2 className="text-2xl font-semibold text-gray-900 mb-8">
+          <h2 className="text-2xl font-semibold mb-8" style={{ color: '#1E90D2' }}>
             Choose a Resource Type
           </h2>
           <div className="flex flex-wrap justify-center gap-4">

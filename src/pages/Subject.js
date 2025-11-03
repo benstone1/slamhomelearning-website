@@ -137,7 +137,7 @@ function Subject({ subject }) {
             <p className="text-xl text-gray-700 max-w-2xl mx-auto">
               {subject === 'Math' 
                 ? 'Discover engaging math activities, games, and resources to build strong number sense and problem-solving skills.'
-                : 'Explore reading activities, book suggestions, and tools to develop reading skills.'
+                : 'Explore reading activities, book suggestions, and tools to develop literacy.'
               }
             </p>
           </motion.div>
