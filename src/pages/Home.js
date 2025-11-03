@@ -34,11 +34,19 @@ function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="text-3xl md:text-4xl font-bold leading-tight mb-4"
+            className="text-4xl md:text-5xl font-bold mb-4"
             style={{ color: '#1E90D2' }}
           >
-            SLAM (Supporting Literacy And Math) provides Kindergarten through Second Grade families with tools and resources to make learning at home fun.
+            SLAM
           </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed mb-6"
+          >
+            SLAM (Supporting Literacy And Math) provides Kindergarten through Second Grade families with tools and resources to make learning at home fun.
+          </motion.p>
           <div className="mt-6 flex justify-center gap-3">
             <a href="/videos" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#F9281B'}}>
               Explore SLAM Videos
