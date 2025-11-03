@@ -131,9 +131,9 @@ function ParentResources() {
         const parentResourceGuides = data.filter(item => 
           item.Subject === 'Parent Resources Guide'
         ).map(item => ({
-          title: item.Filename,
+          title: item.Filename.trim(),
           description: item.Description || 'Parent resource guide',
-          filename: `${item.Filename.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}.pdf`
+          filename: `${item.Filename.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}.pdf`
         }));
         
         setGuides(parentResourceGuides);
@@ -242,7 +242,7 @@ function ParentResources() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: '#1E90D2' }}>
               Parent Resources
             </h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">

@@ -137,9 +137,6 @@ function Videos() {
             <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#1E90D2' }}>
               Videos
             </h1>
-            <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-              Educational videos and tutorials to support learning at home.
-            </p>
           </motion.div>
         </div>
       </section>
@@ -236,7 +233,7 @@ function Videos() {
                             >
                               <div className="flex-1 min-w-0">
                                 <p className="text-sm font-medium text-gray-900 truncate group-hover:text-emerald-700 transition-colors">
-                                  {worksheet.Filename}
+                                  {worksheet.Filename.trim()}
                                 </p>
                                 <div className="flex items-center gap-2 mt-1">
                                   <span className={`text-xs px-2 py-1 rounded-full font-medium ${

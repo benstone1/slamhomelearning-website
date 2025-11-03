@@ -137,7 +137,7 @@ function Subject({ subject }) {
             <p className="text-xl text-gray-700 max-w-2xl mx-auto">
               {subject === 'Math' 
                 ? 'Discover engaging math activities, games, and resources to build strong number sense and problem-solving skills.'
-                : 'Explore reading activities, book suggestions, and tools to develop literacy skills.'
+                : 'Explore reading activities, book suggestions, and tools to develop reading skills.'
               }
             </p>
           </motion.div>
@@ -280,7 +280,7 @@ function Subject({ subject }) {
                           
                           <div className="flex items-start justify-between mb-3">
                             <h3 className="text-lg font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors line-clamp-2 flex-1">
-                              {ws.Filename || 'Untitled'}
+                              {(ws.Filename || 'Untitled').trim()}
                             </h3>
                             {ws['Video Link'] && ws['Video Link'] !== 'n/a' && ws['Video Link'].trim() !== '' && (
                               <div className="ml-2 flex-shrink-0">

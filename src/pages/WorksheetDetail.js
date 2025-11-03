@@ -99,7 +99,7 @@ function WorksheetDetail() {
               {subject} Resources
             </Link>
             <span className="mx-2">→</span>
-            <span className="text-gray-900">{worksheet.Filename}</span>
+            <span className="text-gray-900">{worksheet.Filename.trim()}</span>
           </nav>
         </div>
       </div>
@@ -146,7 +146,7 @@ function WorksheetDetail() {
 
           {/* Title */}
           <h1 className="text-4xl font-bold text-gray-900 mb-8 leading-tight">
-            {worksheet.Filename}
+            {worksheet.Filename.trim()}
           </h1>
 
           {/* Video Section */}
@@ -178,7 +178,7 @@ function WorksheetDetail() {
                   ← Back to {subject}
                 </Link>
                 <a
-                  href={`/worksheets/${worksheet.Subject ? worksheet.Subject.toLowerCase() : ''}/${encodeURIComponent(worksheet.Filename)}.pdf`}
+                  href={`/worksheets/${worksheet.Subject ? worksheet.Subject.toLowerCase() : ''}/${encodeURIComponent(worksheet.Filename.trim())}.pdf`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
