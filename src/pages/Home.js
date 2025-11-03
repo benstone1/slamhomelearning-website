@@ -29,37 +29,21 @@ function Home() {
 
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-4 py-14">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <motion.h1
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="text-3xl md:text-4xl font-bold leading-tight mb-4"
-              style={{ color: '#1E90D2' }}
-            >
-              SLAM (Supporting Literacy And Math) provides you with tools and resources to make learning at home fun.
-            </motion.h1>
-            <div className="mt-6 flex gap-3">
-              <a href="/videos" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#F9281B'}}>
-                Explore SLAM Videos
-              </a>
-            </div>
-          </div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
+        <div className="text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="relative"
+            className="text-3xl md:text-4xl font-bold leading-tight mb-4"
+            style={{ color: '#1E90D2' }}
           >
-            <div className="aspect-[4/3] rounded-3xl bg-white border border-gray-200 shadow-inner flex items-center justify-center overflow-hidden">
-              <img
-                src="/images/slam-logo_new.png"
-                alt="SLAM Home Learning logo"
-                className="w-full h-full object-contain p-8"
-              />
-            </div>
-          </motion.div>
+            SLAM (Supporting Literacy And Math) provides you with tools and resources to make learning at home fun.
+          </motion.h1>
+          <div className="mt-6 flex justify-center gap-3">
+            <a href="/videos" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#F9281B'}}>
+              Explore SLAM Videos
+            </a>
+          </div>
         </div>
       </section>
 
@@ -86,7 +70,7 @@ function Home() {
               title="Accessible"
               image="/images/open_door.svg"
             >
-              Parents play the most important role in a child’s learning journey. We aim to give you the tools, knowledge, and encouragement you need to feel confident guiding your child. When parents feel empowered, children have a greater chance of thriving in school and beyond.
+              Parents play the most important role in a child’s learning journey. We aim to give you the tools, knowledge, and encouragement you need to feel confident guiding your child. This is why it’s important to us that families will always have access to our programs and materials at no cost. 
             </FeatureCard>
           </div>
         </div>

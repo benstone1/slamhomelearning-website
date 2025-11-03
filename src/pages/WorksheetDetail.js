@@ -163,21 +163,6 @@ function WorksheetDetail() {
             </div>
           )}
 
-          {/* Resource Description */}
-          <div className="bg-gray-50 rounded-2xl p-6 mb-8">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">About This Resource</h3>
-            <div className="space-y-3 text-gray-700">
-              {worksheet.Description ? (
-                <p className="leading-relaxed">{worksheet.Description}</p>
-              ) : (
-                <p>
-                  This {category?.toLowerCase() || 'resource'} is designed to support {subject?.toLowerCase() || 'learning'} skills 
-                  {worksheet['Grade Level'] && ` for ${worksheet['Grade Level'] === 'K' ? 'kindergarten' : `grade ${worksheet['Grade Level']}`} students`}.
-                </p>
-              )}
-            </div>
-          </div>
-
           {/* Download Section */}
           <div className="border-t border-gray-200 pt-8">
             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">

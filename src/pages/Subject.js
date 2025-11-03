@@ -35,32 +35,36 @@ function parseCSVLine(line) {
 }
 
 function Subject({ subject }) {
-  const [worksheets, setWorksheets] = useState([]);
+  const [allWorksheets, setAllWorksheets] = useState([]);
+  const [filteredWorksheets, setFilteredWorksheets] = useState([]);
+  const [selectedGrade, setSelectedGrade] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('Activity'); // Default to Activities
 
-  // Function to parse and format grade levels
-  const formatGradeLevel = (gradeString) => {
-    if (!gradeString) return '';
+  // Grade levels to display
+  const grades = [
+    { key: 'K', label: 'Kindergarten' },
+    { key: '1', label: 'First Grade' },
+    { key: '2', label: 'Second Grade' }
+  ];
+
+  // Categories for filtering
+  const categories = [
+    { key: 'Activity', label: 'Activities', icon: '📋' },
+    { key: 'Games', label: 'Games', icon: '🎮' },
+    { key: 'Parent Guide', label: 'Guides', icon: '📖' }
+  ];
+
+  // Function to check if worksheet matches the selected grade
+  const worksheetMatchesGrade = (worksheet, gradeKey) => {
+    const gradeLevel = worksheet['Grade Level'];
+    if (!gradeLevel) return false;
     
-    // Remove quotes and extra spaces
-    const cleanGrade = gradeString.replace(/['"]/g, '').trim();
+    // Clean up the grade level string
+    const cleanGrades = gradeLevel.replace(/['"]/g, '').trim();
     
-    // Handle single grades
-    if (cleanGrade === 'K') return 'K';
-    if (cleanGrade.match(/^\d+$/)) return `Grade ${cleanGrade}`;
-    
-    // Handle multiple grades (e.g., "K, 1", "K, 1, 2")
-    const grades = cleanGrade.split(',').map(g => g.trim()).filter(g => g);
-    if (grades.length > 1) {
-      const formattedGrades = grades.map(g => {
-        if (g === 'K') return 'K';
-        if (g.match(/^\d+$/)) return g;
-        return g;
-      });
-      return formattedGrades.join(', ');
-    }
-    
-    // Default case
-    return cleanGrade;
+    // Split by comma and check if any grade matches
+    const grades = cleanGrades.split(',').map(g => g.trim());
+    return grades.includes(gradeKey);
   };
 
   useEffect(() => {
@@ -80,9 +84,37 @@ function Subject({ subject }) {
         });
         // Filter by subject
         const filtered = data.filter(ws => ws.Subject && ws.Subject.toLowerCase() === subject.toLowerCase());
-        setWorksheets(filtered);
+        setAllWorksheets(filtered);
       });
   }, [subject]);
+
+  // Function to check if worksheet matches the selected category
+  const worksheetMatchesCategory = (worksheet, categoryKey) => {
+    const category = worksheet.Category;
+    if (!category) return false;
+    
+    // Handle different category variations
+    if (categoryKey === 'Games') {
+      return category === 'Games' || category === 'Ganes'; // Handle typo in CSV
+    }
+    return category === categoryKey;
+  };
+
+  // Filter worksheets when grade or category changes
+  useEffect(() => {
+    if (selectedGrade && allWorksheets.length > 0) {
+      let filtered = allWorksheets.filter(ws => worksheetMatchesGrade(ws, selectedGrade));
+      
+      // Apply category filter
+      if (selectedCategory) {
+        filtered = filtered.filter(ws => worksheetMatchesCategory(ws, selectedCategory));
+      }
+      
+      setFilteredWorksheets(filtered);
+    } else {
+      setFilteredWorksheets([]);
+    }
+  }, [selectedGrade, selectedCategory, allWorksheets]);
 
   // Choose image and colors based on subject
   let imageSrc = '';
@@ -133,102 +165,174 @@ function Subject({ subject }) {
         </div>
       </section>
 
-      {/* Worksheets Grid */}
-      <section className="max-w-6xl mx-auto px-4 py-12">
+      {/* Grade Selection */}
+      <section className="max-w-4xl mx-auto px-4 py-8">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-center"
         >
-          <h2 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
-            Available Resources ({worksheets.length})
+          <h2 className="text-2xl font-semibold text-gray-900 mb-8">
+            Select a Grade Level
           </h2>
-          
-          {worksheets.length === 0 ? (
-            <div className="text-center py-12">
-              <div className="text-gray-400 text-6xl mb-4">📚</div>
-              <p className="text-gray-600 text-lg">No resources found for {subject}</p>
-            </div>
-          ) : (
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {worksheets.map((ws, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  className="group cursor-pointer"
-                  onClick={() => {
-                    // Pass worksheet metadata via query string
-                    const params = new URLSearchParams(ws).toString();
-                    window.location.href = `/worksheet/${idx}?${params}`;
-                  }}
-                >
-                  <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 group-hover:border-emerald-200 h-full">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
-                          ws.Category === 'Activity' ? 'bg-green-100 text-green-800' :
-                          ws.Category === 'Parent Guide' ? 'bg-blue-100 text-blue-800' :
-                          ws.Category === 'Games' || ws.Category === 'Ganes' ? 'bg-purple-100 text-purple-800' :
-                          'bg-gray-100 text-gray-800'
-                        }`}>
-                          {ws.Category === 'Games' || ws.Category === 'Ganes' ? 'Game' : ws.Category || 'Resource'}
-                        </div>
-                        <div className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                          subject === 'Math' ? 'bg-orange-100 text-orange-800' :
-                          subject === 'Reading' ? 'bg-indigo-100 text-indigo-800' :
-                          'bg-emerald-100 text-emerald-800'
-                        }`}>
-                          {subject}
-                        </div>
-                      </div>
-                      {ws['Grade Level'] && (
-                        <div className="flex flex-wrap gap-1">
-                          {ws['Grade Level'].replace(/['"]/g, '').split(',').map((grade, idx) => {
-                            const cleanGrade = grade.trim();
-                            const displayGrade = cleanGrade === 'K' ? 'K' : cleanGrade.match(/^\d+$/) ? `Grade ${cleanGrade}` : cleanGrade;
-                            return (
-                              <span key={idx} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full font-medium">
-                                {displayGrade}
-                              </span>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                    
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors line-clamp-2 flex-1">
-                        {ws.Filename || 'Untitled'}
-                      </h3>
-                      {ws['Video Link'] && ws['Video Link'] !== 'n/a' && ws['Video Link'].trim() !== '' && (
-                        <div className="ml-2 flex-shrink-0">
-                          <div className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                            <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                              <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
-                            </svg>
-                            Video
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                    
-                    <div className="flex items-center justify-end mt-auto pt-4">
-                      <div className="flex items-center text-emerald-600 group-hover:text-emerald-700 transition-colors">
-                        <span className="text-sm font-medium mr-1">View</span>
-                        <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          )}
+          <div className="flex flex-wrap justify-center gap-4">
+            {grades.map((grade) => (
+              <button
+                key={grade.key}
+                onClick={() => setSelectedGrade(grade.key)}
+                className={`px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-200 ${
+                  selectedGrade === grade.key
+                    ? 'bg-emerald-600 text-white shadow-lg transform scale-105'
+                    : 'bg-white text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 shadow-md hover:shadow-lg'
+                }`}
+              >
+                {grade.label}
+              </button>
+            ))}
+          </div>
         </motion.div>
       </section>
+
+      {/* Worksheets Grid - Only show when grade is selected */}
+      {selectedGrade && (
+        <section className="max-w-6xl mx-auto px-4 pb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
+              {grades.find(g => g.key === selectedGrade)?.label} {subject} Resources
+            </h3>
+            
+            <div className="flex flex-col lg:flex-row gap-8">
+              {/* Sidebar Filter */}
+              <div className="lg:w-64 flex-shrink-0">
+                <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 sticky top-8">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                    <svg className="w-5 h-5 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                    </svg>
+                    Filter by Type
+                  </h4>
+                  <div className="space-y-2">
+                    {categories.map((category) => (
+                      <button
+                        key={category.key}
+                        onClick={() => setSelectedCategory(category.key)}
+                        className={`w-full flex items-center px-4 py-3 rounded-xl text-left transition-all duration-200 ${
+                          selectedCategory === category.key
+                            ? 'bg-emerald-100 text-emerald-800 border-2 border-emerald-300 shadow-sm'
+                            : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border-2 border-transparent hover:border-gray-200'
+                        }`}
+                      >
+                        <span className="text-xl mr-3">{category.icon}</span>
+                        <div>
+                          <div className="font-medium">{category.label}</div>
+                          <div className="text-xs text-gray-500">
+                            {allWorksheets.filter(ws => 
+                              worksheetMatchesGrade(ws, selectedGrade) && 
+                              worksheetMatchesCategory(ws, category.key)
+                            ).length} items
+                          </div>
+                        </div>
+                        {selectedCategory === category.key && (
+                          <div className="ml-auto">
+                            <div className="w-2 h-2 bg-emerald-600 rounded-full"></div>
+                          </div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                  
+                  {/* Clear filter option */}
+                  <button
+                    onClick={() => setSelectedCategory('')}
+                    className="w-full mt-4 px-4 py-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Show All Types
+                  </button>
+                </div>
+              </div>
+
+              {/* Content Area */}
+              <div className="flex-1">
+                {filteredWorksheets.length === 0 ? (
+                  <div className="text-center py-12">
+                    <div className="text-gray-400 text-6xl mb-4">📚</div>
+                    <p className="text-gray-600 text-lg">
+                      No {selectedCategory ? categories.find(c => c.key === selectedCategory)?.label.toLowerCase() : subject.toLowerCase()} resources found for {grades.find(g => g.key === selectedGrade)?.label}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                    {filteredWorksheets.map((ws, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: idx * 0.1 }}
+                        className="group cursor-pointer"
+                        onClick={() => {
+                          // Pass worksheet metadata via query string
+                          const params = new URLSearchParams(ws).toString();
+                          window.location.href = `/worksheet/${idx}?${params}`;
+                        }}
+                      >
+                        <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 group-hover:border-emerald-200 h-full">
+                          <div className="flex items-center gap-2 mb-4">
+                            <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                              ws.Category === 'Activity' ? 'bg-green-100 text-green-800' :
+                              ws.Category === 'Parent Guide' ? 'bg-blue-100 text-blue-800' :
+                              ws.Category === 'Games' || ws.Category === 'Ganes' ? 'bg-purple-100 text-purple-800' :
+                              'bg-gray-100 text-gray-800'
+                            }`}>
+                              {ws.Category === 'Games' || ws.Category === 'Ganes' ? 'Game' : ws.Category || 'Resource'}
+                            </div>
+                            <div className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                              subject === 'Math' ? 'bg-orange-100 text-orange-800' :
+                              subject === 'Reading' ? 'bg-indigo-100 text-indigo-800' :
+                              'bg-emerald-100 text-emerald-800'
+                            }`}>
+                              {subject}
+                            </div>
+                          </div>
+                          
+                          <div className="flex items-start justify-between mb-3">
+                            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors line-clamp-2 flex-1">
+                              {ws.Filename || 'Untitled'}
+                            </h3>
+                            {ws['Video Link'] && ws['Video Link'] !== 'n/a' && ws['Video Link'].trim() !== '' && (
+                              <div className="ml-2 flex-shrink-0">
+                                <div className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                  <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+                                  </svg>
+                                  Video
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                          
+                          <div className="flex items-center justify-end mt-auto pt-4">
+                            <div className="flex items-center text-emerald-600 group-hover:text-emerald-700 transition-colors">
+                              <span className="text-sm font-medium mr-1">View</span>
+                              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </section>
+      )}
     </div>
   );
 }

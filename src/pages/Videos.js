@@ -60,9 +60,11 @@ function YouTubeEmbed({ videoId, title }) {
 
 function Videos() {
   const [videos, setVideos] = useState([]);
+  const [worksheets, setWorksheets] = useState([]);
 
   useEffect(() => {
-    fetch(`/worksheets/worksheet_metadata.csv?v=${Date.now()}`)
+    // Fetch video links
+    const fetchVideos = fetch(`/video_links.csv?v=${Date.now()}`)
       .then(res => res.text())
       .then(text => {
         const lines = text.split('\n').filter(line => line.trim());
@@ -76,34 +78,56 @@ function Videos() {
           return obj;
         });
         
-        // Filter for resources with video links
-        const videosOnly = data.filter(ws => 
-          ws['Video Link'] && 
-          ws['Video Link'] !== 'n/a' && 
-          ws['Video Link'].trim() !== ''
+        // Filter out empty entries and ensure we have both title and link
+        const validVideos = data.filter(video => 
+          video.Title && 
+          video.Link && 
+          video.Title.trim() !== '' && 
+          video.Link.trim() !== ''
         );
         
-        // Deduplicate videos by URL
-        const uniqueVideos = [];
-        const seenUrls = new Set();
-        
-        videosOnly.forEach(video => {
-          const url = video['Video Link'].trim();
-          if (!seenUrls.has(url)) {
-            seenUrls.add(url);
-            uniqueVideos.push(video);
-          }
-        });
-        
-        setVideos(uniqueVideos);
+        return validVideos;
       });
+
+    // Fetch worksheet metadata
+    const fetchWorksheets = fetch(`/worksheets/worksheet_metadata.csv?v=${Date.now()}`)
+      .then(res => res.text())
+      .then(text => {
+        const lines = text.split('\n').filter(line => line.trim());
+        const headers = parseCSVLine(lines[0]);
+        const data = lines.slice(1).map(line => {
+          const values = parseCSVLine(line);
+          const obj = {};
+          headers.forEach((h, i) => {
+            obj[h] = values[i] || '';
+          });
+          return obj;
+        });
+        return data.filter(ws => ws.Filename && ws.Filename.trim() !== '');
+      });
+
+    // Wait for both to complete
+    Promise.all([fetchVideos, fetchWorksheets]).then(([videoData, worksheetData]) => {
+      setVideos(videoData);
+      setWorksheets(worksheetData);
+    });
   }, []);
+
+  // Function to find worksheets related to a video
+  const getRelatedWorksheets = (videoTitle) => {
+    return worksheets.filter(worksheet => 
+      worksheet['Video Title'] && 
+      worksheet['Video Title'].trim() !== '' && 
+      worksheet['Video Title'] !== 'n/a' &&
+      worksheet['Video Title'].toLowerCase().includes(videoTitle.toLowerCase())
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky-50 to-emerald-50">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="relative max-w-6xl mx-auto px-4 py-20">
+        <div className="relative max-w-6xl mx-auto px-4 py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -121,15 +145,12 @@ function Videos() {
       </section>
 
       {/* Videos Grid */}
-      <section className="max-w-6xl mx-auto px-4 py-12">
+      <section className="max-w-6xl mx-auto px-4 pb-8">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h2 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
-            Available Videos ({videos.length})
-          </h2>
           
           {videos.length === 0 ? (
             <div className="text-center py-20">
@@ -141,43 +162,76 @@ function Videos() {
               </p>
             </div>
           ) : (
-            <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
-              {videos.map((video, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100"
-                >
-                  <div className="mb-4">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
-                        video.Subject === 'Math' ? 'bg-orange-100 text-orange-800' :
-                        video.Subject === 'Reading' ? 'bg-indigo-100 text-indigo-800' :
-                        'bg-emerald-100 text-emerald-800'
-                      }`}>
-                        {video.Subject}
-                      </div>
+            <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
+              {videos.map((video, idx) => {
+                const relatedWorksheets = getRelatedWorksheets(video.Title);
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: idx * 0.1 }}
+                    className="bg-white rounded-2xl shadow-lg p-4 border border-gray-100"
+                  >
+                    <div className="mb-3">
+                      <h3 className="text-xl font-semibold text-gray-900">
+                        {video.Title}
+                      </h3>
                     </div>
                     
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                      {video['Video Title'] && video['Video Title'] !== 'n/a' ? video['Video Title'] : video.Filename}
-                    </h3>
-                    
-                    {video.Description && (
-                      <p className="text-gray-600 mb-4 leading-relaxed">
-                        {video.Description}
-                      </p>
+                    <YouTubeEmbed 
+                      videoId={getYouTubeVideoId(video.Link)} 
+                      title={video.Title} 
+                    />
+
+                    {/* Related Worksheets */}
+                    {relatedWorksheets.length > 0 && (
+                      <div className="mt-4 pt-4 border-t border-gray-200">
+                        <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
+                          <svg className="w-4 h-4 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                          Related Resources ({relatedWorksheets.length})
+                        </h4>
+                        <div className="space-y-2">
+                          {relatedWorksheets.map((worksheet, wsIdx) => (
+                            <div
+                              key={wsIdx}
+                              className="flex items-center justify-between p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group cursor-pointer"
+                              onClick={() => {
+                                const params = new URLSearchParams(worksheet).toString();
+                                window.location.href = `/worksheet/${wsIdx}?${params}`;
+                              }}
+                            >
+                              <div className="flex-1 min-w-0">
+                                <p className="text-sm font-medium text-gray-900 truncate group-hover:text-emerald-700 transition-colors">
+                                  {worksheet.Filename}
+                                </p>
+                                <div className="flex items-center gap-2 mt-1">
+                                  <span className={`text-xs px-2 py-1 rounded-full font-medium ${
+                                    worksheet.Category === 'Activity' ? 'bg-green-100 text-green-700' :
+                                    worksheet.Category === 'Parent Guide' ? 'bg-blue-100 text-blue-700' :
+                                    worksheet.Category === 'Games' || worksheet.Category === 'Ganes' ? 'bg-purple-100 text-purple-700' :
+                                    'bg-gray-100 text-gray-700'
+                                  }`}>
+                                    {worksheet.Category === 'Games' || worksheet.Category === 'Ganes' ? 'Game' : worksheet.Category}
+                                  </span>
+                                  <span className="text-xs text-gray-500">
+                                    {worksheet.Subject} • Grade {worksheet['Grade Level']}
+                                  </span>
+                                </div>
+                              </div>
+                              <svg className="w-4 h-4 text-gray-400 group-hover:text-emerald-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     )}
-                  </div>
-                  
-                  <YouTubeEmbed 
-                    videoId={getYouTubeVideoId(video['Video Link'])} 
-                    title={video['Video Title']} 
-                  />
-                </motion.div>
-              ))}
+                  </motion.div>
+                );
+              })}
             </div>
           )}
         </motion.div>

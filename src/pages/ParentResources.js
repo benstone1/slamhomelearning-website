@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from "framer-motion";
 
 const ResourceCard = ({ title, description, website, category }) => (
@@ -8,12 +8,13 @@ const ResourceCard = ({ title, description, website, category }) => (
     transition={{ duration: 0.4 }}
     className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 h-full"
   >
-    <div className="flex items-start justify-between mb-4">
+    <div className="flex items-center gap-2 mb-4">
       <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
         category === 'ADHD' ? 'bg-red-100 text-red-800' :
         category === 'Learning' ? 'bg-blue-100 text-blue-800' :
         category === 'Reading' ? 'bg-green-100 text-green-800' :
-        category === 'Therapy' ? 'bg-purple-100 text-purple-800' :
+        category === 'OT' ? 'bg-purple-100 text-purple-800' :
+        category === 'Speech/Language' ? 'bg-indigo-100 text-indigo-800' :
         'bg-gray-100 text-gray-800'
       }`}>
         {category}
@@ -42,8 +43,62 @@ const ResourceCard = ({ title, description, website, category }) => (
   </motion.div>
 );
 
+const GuideCard = ({ title, description, filename, category }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.4 }}
+    className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 h-full cursor-pointer group"
+    onClick={() => {
+      window.open(`/guides/${filename}`, '_blank');
+    }}
+  >
+    <div className="flex items-center gap-2 mb-4">
+      <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+        category === 'ADHD' ? 'bg-red-100 text-red-800' :
+        category === 'Learning' ? 'bg-blue-100 text-blue-800' :
+        category === 'Reading' ? 'bg-green-100 text-green-800' :
+        category === 'OT' ? 'bg-purple-100 text-purple-800' :
+        category === 'Speech/Language' ? 'bg-indigo-100 text-indigo-800' :
+        'bg-gray-100 text-gray-800'
+      }`}>
+        {category}
+      </div>
+      <div className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+        PDF
+      </div>
+    </div>
+    
+    <h3 className="text-xl font-semibold text-gray-900 mb-3 leading-tight group-hover:text-emerald-700 transition-colors">
+      {title}
+    </h3>
+    
+    <p className="text-gray-700 mb-4 leading-relaxed">
+      {description}
+    </p>
+    
+    <div className="flex items-center text-emerald-600 group-hover:text-emerald-700 font-medium transition-colors">
+      <span className="mr-2">View PDF</span>
+      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+      </svg>
+    </div>
+  </motion.div>
+);
+
 function ParentResources() {
-  const resources = [
+  const [activeTab, setActiveTab] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('ADHD'); // Default to ADHD
+
+  // Categories for filtering with icons
+  const categories = [
+    { key: 'ADHD', label: 'ADHD', icon: '🧠' },
+    { key: 'Learning', label: 'Learning Differences', icon: '📚' },
+    { key: 'Reading', label: 'Reading Support', icon: '📖' },
+    { key: 'OT', label: 'Occupational Therapy', icon: '✋' },
+    { key: 'Speech/Language', label: 'Speech/Language', icon: '🗣️' }
+  ];
+  const organizationsAndWebsites = [
     {
       title: "ADDitude",
       description: "An online magazine that provides information, strategies and support for people with ADHD and their families. They also offer free Zoom webinars.",
@@ -78,13 +133,13 @@ function ParentResources() {
       title: "OT Mom Learning Activities",
       description: "This website provides hands-on activities and exercises to work on at home to help support your child's fine motor, gross motor and visual perception skills.",
       website: "https://www.ot-mom-learning-activities.com/",
-      category: "Therapy"
+      category: "OT"
     },
     {
       title: "The OT Toolbox",
       description: "A website created by an occupational therapist that provides free resources for parents, teachers, and other occupational therapists.",
       website: "https://www.theottoolbox.com/category/free-resources/",
-      category: "Therapy"
+      category: "OT"
     },
     {
       title: "The Neurodiversity Alliance (ND Alliance)",
@@ -96,7 +151,7 @@ function ParentResources() {
       title: "Pediatric Occupational Therapy Resources",
       description: "Ann and Robert H. Lurie Children's Hospital of Chicago has a free resources section on their website that provides information about occupational therapy.",
       website: "https://www.luriechildrens.org/en/specialties-conditions/pediatric-occupational-therapy/resources/",
-      category: "Therapy"
+      category: "OT"
     },
     {
       title: "Reading Rockets",
@@ -109,10 +164,49 @@ function ParentResources() {
       description: "An organization that supports 70 million people with learning and thinking differences in the United States, providing comprehensive resources and support.",
       website: "https://www.understood.org",
       category: "Learning"
+    },
+    {
+      title: "American Speech-Language-Hearing Association (ASHA)",
+      description: "ASHA is the national, professional, scientific and credentialing association for audiologists and speech-language pathologists, dedicated to promoting high-quality services and advocating for people with speech, language, hearing and swallowing challenges. They have a range of family/parent resources including checklists of developmental milestones and tips for how families can support communication at home.",
+      website: "https://www.asha.org",
+      category: "Speech/Language"
+    },
+    {
+      title: "National Stuttering Association (NSA)",
+      description: "NSA is the largest nonprofit in the world focused on children and adults who stutter, offer peer support groups, educational tools, advocacy and research to help build confidence and community. They have a dedicated section for parents/families of children who stutter.",
+      website: "https://westutter.org",
+      category: "Speech/Language"
+    },
+    {
+      title: "The Stuttering Foundation",
+      description: "This nonprofit provides free online publications, videos and other resources for people who stutter and their families. They also support research into stuttering causes. They have free brochures, books and videos.",
+      website: "https://www.stutteringhelp.org",
+      category: "Speech/Language"
     }
   ];
 
-  const categories = ['ADHD', 'Learning', 'Reading', 'Therapy'];
+  const guides = [
+    {
+      title: "ADHD Parent Guide",
+      description: "Comprehensive guide for parents to understand and support children with ADHD, including strategies for home and school environments.",
+      filename: "adhd-parent-guide.pdf",
+      category: "ADHD"
+    },
+    {
+      title: "Reading Support Strategies",
+      description: "Evidence-based strategies and activities to help children develop strong reading skills at home.",
+      filename: "reading-support-strategies.pdf",
+      category: "Reading"
+    },
+    {
+      title: "Fine Motor Development Guide",
+      description: "Activities and exercises to help children develop fine motor skills essential for writing and daily activities.",
+      filename: "fine-motor-guide.pdf",
+      category: "OT"
+    }
+  ];
+
+  const tabs = ['Organizations & Websites', 'Guides'];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky-50 to-emerald-50">
@@ -129,97 +223,248 @@ function ParentResources() {
               Parent Resources
             </h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-              Discover trusted organizations and websites that provide support, strategies, and resources 
-              to help you navigate your child's learning journey with confidence.
+              Discover trusted organizations, websites, and helpful guides to support your child's learning journey.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Category Filter */}
-      <section className="max-w-6xl mx-auto px-4 py-8">
+      {/* Tab Selection */}
+      <section className="max-w-4xl mx-auto px-4 py-8">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-3 mb-8"
+          className="text-center"
         >
-          {categories.map((category) => (
-            <div
-              key={category}
-              className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium ${
-                category === 'ADHD' ? 'bg-red-100 text-red-800' :
-                category === 'Learning' ? 'bg-blue-100 text-blue-800' :
-                category === 'Reading' ? 'bg-green-100 text-green-800' :
-                category === 'Therapy' ? 'bg-purple-100 text-purple-800' :
-                'bg-gray-100 text-gray-800'
-              }`}
-            >
-              {category === 'ADHD' ? 'ADHD Support' :
-               category === 'Learning' ? 'Learning Differences' :
-               category === 'Reading' ? 'Reading Support' :
-               category === 'Therapy' ? 'Occupational Therapy' :
-               category}
-            </div>
-          ))}
-        </motion.div>
-      </section>
-
-      {/* Resources Grid */}
-      <section className="max-w-6xl mx-auto px-4 pb-12">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <h2 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
-            Trusted Organizations & Websites ({resources.length})
+          <h2 className="text-2xl font-semibold text-gray-900 mb-8">
+            Choose a Resource Type
           </h2>
-          
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {resources.map((resource, idx) => (
-              <ResourceCard
-                key={idx}
-                {...resource}
-              />
+          <div className="flex flex-wrap justify-center gap-4">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-200 ${
+                  activeTab === tab
+                    ? 'bg-emerald-600 text-white shadow-lg transform scale-105'
+                    : 'bg-white text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 shadow-md hover:shadow-lg'
+                }`}
+              >
+                {tab}
+              </button>
             ))}
           </div>
         </motion.div>
       </section>
 
-      {/* Additional Support Section */}
-      <section className="bg-white/70 border-y border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 py-12">
+      {/* Organizations & Websites Content */}
+      {activeTab === 'Organizations & Websites' && (
+        <section className="max-w-6xl mx-auto px-4 pb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center"
           >
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-              Need More Support?
+            <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
+              Trusted Organizations & Websites
             </h3>
-            <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
-              Remember that every child learns differently, and it's okay to seek help. These resources 
-              are here to support you and your child on your unique learning journey.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/reading" 
-                className="inline-flex items-center px-6 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors font-medium"
-              >
-                Browse Reading Resources
-              </a>
-              <a 
-                href="/math" 
-                className="inline-flex items-center px-6 py-3 border border-emerald-600 text-emerald-600 rounded-xl hover:bg-emerald-50 transition-colors font-medium"
-              >
-                Explore Math Resources
-              </a>
+            
+            <div className="flex flex-col lg:flex-row gap-8">
+              {/* Sidebar Filter */}
+              <div className="lg:w-64 flex-shrink-0">
+                <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 sticky top-8">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                    <svg className="w-5 h-5 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                    </svg>
+                    Filter by Category
+                  </h4>
+                  <div className="space-y-2">
+                    {categories.map((category) => (
+                      <button
+                        key={category.key}
+                        onClick={() => setSelectedCategory(category.key)}
+                        className={`w-full flex items-center px-4 py-3 rounded-xl text-left transition-all duration-200 ${
+                          selectedCategory === category.key
+                            ? 'bg-emerald-100 text-emerald-800 border-2 border-emerald-300 shadow-sm'
+                            : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border-2 border-transparent hover:border-gray-200'
+                        }`}
+                      >
+                        <span className="text-xl mr-3">{category.icon}</span>
+                        <div>
+                          <div className="font-medium">{category.label}</div>
+                          <div className="text-xs text-gray-500">
+                            {organizationsAndWebsites.filter(org => org.category === category.key).length} items
+                          </div>
+                        </div>
+                        {selectedCategory === category.key && (
+                          <div className="ml-auto">
+                            <div className="w-2 h-2 bg-emerald-600 rounded-full"></div>
+                          </div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                  
+                  {/* Clear filter option */}
+                  <button
+                    onClick={() => setSelectedCategory('')}
+                    className="w-full mt-4 px-4 py-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Show All Categories
+                  </button>
+                </div>
+              </div>
+
+              {/* Content Area */}
+              <div className="flex-1">
+                {organizationsAndWebsites.filter(org => !selectedCategory || org.category === selectedCategory).length === 0 ? (
+                  <div className="text-center py-12">
+                    <div className="text-gray-400 text-6xl mb-4">🔍</div>
+                    <p className="text-gray-600 text-lg">
+                      No organizations found for {selectedCategory ? categories.find(c => c.key === selectedCategory)?.label : 'this category'}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                    {organizationsAndWebsites
+                      .filter(org => !selectedCategory || org.category === selectedCategory)
+                      .map((resource, idx) => (
+                        <ResourceCard
+                          key={idx}
+                          {...resource}
+                        />
+                      ))}
+                  </div>
+                )}
+              </div>
             </div>
           </motion.div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* Guides Content */}
+      {activeTab === 'Guides' && (
+        <section className="max-w-6xl mx-auto px-4 pb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
+              Helpful Parent Guides
+            </h3>
+            
+            <div className="flex flex-col lg:flex-row gap-8">
+              {/* Sidebar Filter */}
+              <div className="lg:w-64 flex-shrink-0">
+                <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 sticky top-8">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                    <svg className="w-5 h-5 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                    </svg>
+                    Filter by Category
+                  </h4>
+                  <div className="space-y-2">
+                    {categories.map((category) => (
+                      <button
+                        key={category.key}
+                        onClick={() => setSelectedCategory(category.key)}
+                        className={`w-full flex items-center px-4 py-3 rounded-xl text-left transition-all duration-200 ${
+                          selectedCategory === category.key
+                            ? 'bg-emerald-100 text-emerald-800 border-2 border-emerald-300 shadow-sm'
+                            : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border-2 border-transparent hover:border-gray-200'
+                        }`}
+                      >
+                        <span className="text-xl mr-3">{category.icon}</span>
+                        <div>
+                          <div className="font-medium">{category.label}</div>
+                          <div className="text-xs text-gray-500">
+                            {guides.filter(guide => guide.category === category.key).length} items
+                          </div>
+                        </div>
+                        {selectedCategory === category.key && (
+                          <div className="ml-auto">
+                            <div className="w-2 h-2 bg-emerald-600 rounded-full"></div>
+                          </div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                  
+                  {/* Clear filter option */}
+                  <button
+                    onClick={() => setSelectedCategory('')}
+                    className="w-full mt-4 px-4 py-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Show All Categories
+                  </button>
+                </div>
+              </div>
+
+              {/* Content Area */}
+              <div className="flex-1">
+                {guides.filter(guide => !selectedCategory || guide.category === selectedCategory).length === 0 ? (
+                  <div className="text-center py-12">
+                    <div className="text-gray-400 text-6xl mb-4">📄</div>
+                    <p className="text-gray-600 text-lg">
+                      No guides found for {selectedCategory ? categories.find(c => c.key === selectedCategory)?.label : 'this category'}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                    {guides
+                      .filter(guide => !selectedCategory || guide.category === selectedCategory)
+                      .map((guide, idx) => (
+                        <GuideCard
+                          key={idx}
+                          {...guide}
+                        />
+                      ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </section>
+      )}
+
+      {/* Additional Support Section - Only show when a tab is active */}
+      {activeTab && (
+        <section className="bg-white/70 border-y border-gray-100">
+          <div className="max-w-6xl mx-auto px-4 py-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center"
+            >
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                Need More Support?
+              </h3>
+              <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
+                Remember that every child learns differently, and it's okay to seek help. These resources 
+                are here to support you and your child on your unique learning journey.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a 
+                  href="/reading" 
+                  className="inline-flex items-center px-6 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors font-medium"
+                >
+                  Browse Reading Resources
+                </a>
+                <a 
+                  href="/math" 
+                  className="inline-flex items-center px-6 py-3 border border-emerald-600 text-emerald-600 rounded-xl hover:bg-emerald-50 transition-colors font-medium"
+                >
+                  Explore Math Resources
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
