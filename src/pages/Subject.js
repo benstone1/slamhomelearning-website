@@ -120,36 +120,11 @@ function Subject({ subject }) {
     }
   }, [selectedGrade, selectedCategory, allWorksheets]);
 
-  // Choose image and colors based on subject
-  let imageSrc = '';
-  let imageAlt = '';
-  let accentColor = 'emerald';
-  if (subject === 'Math') {
-    imageSrc = '/images/Math_Game.jpeg';
-    imageAlt = 'Math Game';
-    accentColor = 'blue';
-  } else if (subject === 'Reading') {
-    imageSrc = '/images/Book_Reading.jpeg';
-    imageAlt = 'Book Reading';
-    accentColor = 'purple';
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky-50 to-emerald-50">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        {imageSrc && (
-          <div className="absolute inset-0 h-80">
-            <img
-              src={imageSrc}
-              alt={imageAlt}
-              className="w-full h-full object-cover opacity-20"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/60 to-white/90"></div>
-          </div>
-        )}
-        
-        <div className="relative max-w-6xl mx-auto px-4 py-20">
+      <section className="relative overflow-hidden bg-white/70 border-b border-gray-200">
+        <div className="max-w-6xl mx-auto px-4 py-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
