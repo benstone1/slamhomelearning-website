@@ -37,7 +37,7 @@ function Home() {
             className="text-3xl md:text-4xl font-bold leading-tight mb-4"
             style={{ color: '#1E90D2' }}
           >
-            SLAM (Supporting Literacy And Math) provides you with tools and resources to make learning at home fun.
+            SLAM (Supporting Literacy And Math) provides Kindergarten through Second Grade families with tools and resources to make learning at home fun.
           </motion.h1>
           <div className="mt-6 flex justify-center gap-3">
             <a href="/videos" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#F9281B'}}>

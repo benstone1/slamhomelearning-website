@@ -49,8 +49,8 @@ function Subject({ subject }) {
 
   // Categories for filtering
   const categories = [
-    { key: 'Activity', label: 'Activities', icon: '📋' },
-    { key: 'Games', label: 'Games', icon: '🎮' },
+    { key: 'Activity', label: 'Activities', icon: '🎨' },
+    { key: 'Games', label: 'Games', icon: '🎲' },
     { key: 'Parent Guide', label: 'Guides', icon: '📖' }
   ];
 
@@ -82,8 +82,12 @@ function Subject({ subject }) {
           });
           return obj;
         });
-        // Filter by subject
-        const filtered = data.filter(ws => ws.Subject && ws.Subject.toLowerCase() === subject.toLowerCase());
+        // Filter by subject and exclude Parent Resources Guide
+        const filtered = data.filter(ws => 
+          ws.Subject && 
+          ws.Subject.toLowerCase() === subject.toLowerCase() &&
+          ws.Subject !== 'Parent Resources Guide'
+        );
         setAllWorksheets(filtered);
       });
   }, [subject]);
@@ -158,7 +162,7 @@ function Subject({ subject }) {
             <p className="text-xl text-gray-700 max-w-2xl mx-auto">
               {subject === 'Math' 
                 ? 'Discover engaging math activities, games, and resources to build strong number sense and problem-solving skills.'
-                : 'Explore reading activities, book suggestions, and tools to develop literacy skills from kindergarten through 2nd grade.'
+                : 'Explore reading activities, book suggestions, and tools to develop literacy skills.'
               }
             </p>
           </motion.div>
