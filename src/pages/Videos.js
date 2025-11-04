@@ -127,7 +127,7 @@ function Videos() {
     <div className="min-h-screen bg-gradient-to-b from-sky-50 to-emerald-50">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="relative max-w-6xl mx-auto px-4 py-12">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -142,7 +142,7 @@ function Videos() {
       </section>
 
       {/* YouTube Subscribe Call to Action */}
-      <section className="max-w-4xl mx-auto px-4 py-6">
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -173,7 +173,7 @@ function Videos() {
       </section>
 
       {/* Videos Grid */}
-      <section className="max-w-6xl mx-auto px-4 pb-8">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-8">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -190,7 +190,7 @@ function Videos() {
               </p>
             </div>
           ) : (
-            <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-1 xl:grid-cols-2">
               {videos.map((video, idx) => {
                 const relatedWorksheets = getRelatedWorksheets(video.Title);
                 return (
@@ -199,10 +199,10 @@ function Videos() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: idx * 0.1 }}
-                    className="bg-white rounded-2xl shadow-lg p-4 border border-gray-100"
+                    className="bg-white rounded-2xl shadow-lg p-3 sm:p-4 border border-gray-100"
                   >
                     <div className="mb-3">
-                      <h3 className="text-xl font-semibold text-gray-900">
+                      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 leading-tight">
                         {video.Title}
                       </h3>
                     </div>
@@ -225,18 +225,18 @@ function Videos() {
                           {relatedWorksheets.map((worksheet, wsIdx) => (
                             <div
                               key={wsIdx}
-                              className="flex items-center justify-between p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group cursor-pointer"
+                              className="flex items-start justify-between p-2 sm:p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group cursor-pointer"
                               onClick={() => {
                                 const params = new URLSearchParams(worksheet).toString();
                                 window.location.href = `/worksheet/${wsIdx}?${params}`;
                               }}
                             >
-                              <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-gray-900 truncate group-hover:text-emerald-700 transition-colors">
-                                  {worksheet.Filename.trim()}
+                              <div className="flex-1 min-w-0 pr-2">
+                                <p className="text-sm font-medium text-gray-900 group-hover:text-emerald-700 transition-colors leading-tight">
+                                  {worksheet.Filename.trim().replace(/\.pdf$/i, '')}
                                 </p>
-                                <div className="flex items-center gap-2 mt-1">
-                                  <span className={`text-xs px-2 py-1 rounded-full font-medium ${
+                                <div className="flex flex-wrap items-center gap-1 sm:gap-2 mt-1">
+                                  <span className={`text-xs px-2 py-1 rounded-full font-medium whitespace-nowrap ${
                                     worksheet.Category === 'Activity' ? 'bg-green-100 text-green-700' :
                                     worksheet.Category === 'Parent Guide' ? 'bg-blue-100 text-blue-700' :
                                     worksheet.Category === 'Games' || worksheet.Category === 'Ganes' ? 'bg-purple-100 text-purple-700' :
@@ -244,9 +244,15 @@ function Videos() {
                                   }`}>
                                     {worksheet.Category === 'Games' || worksheet.Category === 'Ganes' ? 'Game' : worksheet.Category}
                                   </span>
-                                  <span className="text-xs text-gray-500">
-                                    {worksheet.Subject} • Grade {worksheet['Grade Level']}
+                                  <span className="text-xs text-gray-500 whitespace-nowrap">
+                                    {worksheet.Subject}
                                   </span>
+                                  {/* Grade levels using new CSV format */}
+                                  <div className="flex items-center gap-1">
+                                    {worksheet.isKinder === 'TRUE' && <span className="text-xs bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">K</span>}
+                                    {worksheet.isFirst === 'TRUE' && <span className="text-xs bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">1st</span>}
+                                    {worksheet.isSecond === 'TRUE' && <span className="text-xs bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded">2nd</span>}
+                                  </div>
                                 </div>
                               </div>
                               <svg className="w-4 h-4 text-gray-400 group-hover:text-emerald-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
