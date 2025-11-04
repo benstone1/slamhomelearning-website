@@ -146,7 +146,7 @@ function WorksheetDetail() {
 
           {/* Title */}
           <h1 className="text-4xl font-bold text-gray-900 mb-8 leading-tight">
-            {worksheet.Filename.trim()}
+            {worksheet.Filename.trim().replace(/\.pdf$/i, '')}
           </h1>
 
           {/* Video Section */}

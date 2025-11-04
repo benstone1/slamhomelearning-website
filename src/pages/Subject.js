@@ -320,7 +320,7 @@ function Subject({ subject }) {
                           
                           <div className="flex items-start justify-between mb-3">
                             <h3 className="text-lg font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors line-clamp-2 flex-1">
-                              {(ws.Filename || 'Untitled').trim()}
+                              {(ws.Filename || 'Untitled').trim().replace(/\.pdf$/i, '')}
                             </h3>
                             {ws['Video Title'] && ws['Video Title'] !== 'n/a' && ws['Video Title'].trim() !== '' && (
                               <div className="ml-2 flex-shrink-0">
