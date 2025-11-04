@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
+import { checkMultiplePDFsExist } from '../utils/pdfChecker';
 
 // Helper function to parse CSV lines with proper quote handling
 function parseCSVLine(line) {
@@ -39,6 +40,7 @@ function Subject({ subject }) {
   const [filteredWorksheets, setFilteredWorksheets] = useState([]);
   const [selectedGrade, setSelectedGrade] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('Activity'); // Default to Activities
+  const [isCheckingFiles, setIsCheckingFiles] = useState(false);
 
   // Grade levels to display
   const grades = [
@@ -68,9 +70,12 @@ function Subject({ subject }) {
   };
 
   useEffect(() => {
-    fetch(`/worksheets/worksheet_metadata.csv?v=${Date.now()}`)
-      .then(res => res.text())
-      .then(text => {
+    const loadAndValidateWorksheets = async () => {
+      setIsCheckingFiles(true);
+      try {
+        const response = await fetch(`/worksheets/worksheet_metadata.csv?v=${Date.now()}`);
+        const text = await response.text();
+        
         // Parse CSV properly handling quoted values
         const lines = text.split('\n').filter(line => line.trim());
         const headers = parseCSVLine(lines[0]);
@@ -82,14 +87,37 @@ function Subject({ subject }) {
           });
           return obj;
         });
+        
         // Filter by subject and exclude Parent Resources Guide
-        const filtered = data.filter(ws => 
+        const subjectFiltered = data.filter(ws => 
           ws.Subject && 
           ws.Subject.toLowerCase() === subject.toLowerCase() &&
           ws.Subject !== 'Parent Resources Guide'
         );
-        setAllWorksheets(filtered);
-      });
+        
+        // Check which PDFs actually exist
+        const validWorksheets = await checkMultiplePDFsExist(subjectFiltered);
+        
+        // Log any missing files for debugging
+        const missingFiles = subjectFiltered.filter(ws => 
+          !validWorksheets.find(vw => vw.Filename === ws.Filename)
+        );
+        if (missingFiles.length > 0) {
+          console.warn(`${missingFiles.length} worksheets have missing PDF files:`, 
+            missingFiles.map(ws => ws.Filename)
+          );
+        }
+        
+        setAllWorksheets(validWorksheets);
+      } catch (error) {
+        console.error('Error loading worksheets:', error);
+        setAllWorksheets([]);
+      } finally {
+        setIsCheckingFiles(false);
+      }
+    };
+
+    loadAndValidateWorksheets();
   }, [subject]);
 
   // Function to check if worksheet matches the selected category
@@ -237,7 +265,14 @@ function Subject({ subject }) {
 
               {/* Content Area */}
               <div className="flex-1">
-                {filteredWorksheets.length === 0 ? (
+                {isCheckingFiles ? (
+                  <div className="text-center py-12">
+                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600 mb-4"></div>
+                    <p className="text-gray-600 text-lg">
+                      Checking file availability...
+                    </p>
+                  </div>
+                ) : filteredWorksheets.length === 0 ? (
                   <div className="text-center py-12">
                     <div className="text-gray-400 text-6xl mb-4">📚</div>
                     <p className="text-gray-600 text-lg">

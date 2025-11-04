@@ -1,7 +1,8 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { motion } from "framer-motion";
+import { checkPDFExists } from '../utils/pdfChecker';
 
 // Helper function to extract YouTube video ID from URL
 function getYouTubeVideoId(url) {
@@ -36,6 +37,19 @@ function WorksheetDetail() {
   for (const [key, value] of params.entries()) {
     worksheet[key] = value;
   }
+
+  const [pdfExists, setPdfExists] = useState(null); // null = checking, true/false = result
+  
+  // Check if PDF exists when component loads
+  useEffect(() => {
+    if (worksheet.Filename && worksheet.Subject) {
+      checkPDFExists(worksheet.Filename, worksheet.Subject)
+        .then(exists => setPdfExists(exists))
+        .catch(() => setPdfExists(false));
+    } else {
+      setPdfExists(false);
+    }
+  }, [worksheet.Filename, worksheet.Subject]);
 
   // Function to parse and format grade levels
   const formatGradeLevel = (gradeString) => {
@@ -167,8 +181,16 @@ function WorksheetDetail() {
           <div className="border-t border-gray-200 pt-8">
             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Ready to get started?</h3>
-                <p className="text-gray-600">Download this resource and start learning today!</p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {pdfExists === null ? 'Checking availability...' : 
+                   pdfExists === false ? 'File not available' : 
+                   'Ready to get started?'}
+                </h3>
+                <p className="text-gray-600">
+                  {pdfExists === null ? 'Please wait while we verify the file exists.' :
+                   pdfExists === false ? 'This resource is currently unavailable. Please contact support.' :
+                   'Download this resource and start learning today!'}
+                </p>
               </div>
               <div className="flex gap-3">
                 <Link
@@ -177,18 +199,32 @@ function WorksheetDetail() {
                 >
                   ← Back to {subject}
                 </Link>
-                <a
-                  href={`/worksheets/${worksheet.Subject ? worksheet.Subject.toLowerCase() : ''}/${encodeURIComponent(worksheet.Filename.trim())}.pdf`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                >
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
-                  View PDF
-                </a>
+                {pdfExists === null ? (
+                  <div className="inline-flex items-center px-6 py-3 bg-gray-300 text-gray-600 rounded-xl font-semibold">
+                    <div className="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600 mr-2"></div>
+                    Checking...
+                  </div>
+                ) : pdfExists === false ? (
+                  <div className="inline-flex items-center px-6 py-3 bg-red-100 text-red-700 rounded-xl font-semibold">
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.664-.833-2.464 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                    </svg>
+                    File Missing
+                  </div>
+                ) : (
+                  <a
+                    href={`/worksheets/${worksheet.Subject ? worksheet.Subject.toLowerCase() : ''}/${encodeURIComponent(worksheet.Filename.trim().endsWith('.pdf') ? worksheet.Filename.trim() : worksheet.Filename.trim() + '.pdf')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-6 py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                    View PDF
+                  </a>
+                )}
               </div>
             </div>
           </div>
