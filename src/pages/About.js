@@ -68,7 +68,7 @@ function About() {
               />
             </div>
             <div className="flex-1">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: '#1E90D2' }}>About Jeannine (Co-Founder)</h2>
+              <h2 className="text-3xl font-bold mb-6" style={{ color: '#1E90D2' }}>About Jeannine Cleary (Co-Founder)</h2>
               <div className="space-y-6 text-gray-700 leading-relaxed">
             <p>
               Jeannine is a dedicated advocate for educational equity, with extensive experience supporting 
@@ -106,7 +106,7 @@ function About() {
               />
             </div>
             <div className="flex-1">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: '#1E90D2' }}>About Lisbeth (Co-Founder)</h2>
+              <h2 className="text-3xl font-bold mb-6" style={{ color: '#1E90D2' }}>About Lisbeth Stone (Co-Founder)</h2>
               <div className="space-y-6 text-gray-700 leading-relaxed">
             <p>
               Lisbeth holds master's degrees in Teaching and in Learning Disabilities. With over 30 
