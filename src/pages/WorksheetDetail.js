@@ -55,7 +55,7 @@ function WorksheetDetail() {
   // Load video URL from video_links.csv
   useEffect(() => {
     if (worksheet['Video Title'] && worksheet['Video Title'] !== 'n/a' && worksheet['Video Title'].trim() !== '') {
-      fetch('/video_links.csv')
+      fetch(`/video_links.csv?v=${Date.now()}`)
         .then(res => res.text())
         .then(text => {
           const lines = text.split('\n').filter(line => line.trim());
