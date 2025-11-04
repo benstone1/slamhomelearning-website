@@ -143,6 +143,32 @@ function WorksheetDetail() {
             <span className="mx-2">→</span>
             <span className="text-gray-900">{worksheet.Filename.trim()}</span>
           </nav>
+          
+          {/* Back Button */}
+          <div className="mb-6">
+            <button 
+              onClick={handleBackNavigation}
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to {subject} Resources
+              {worksheet.returnGrade && (
+                <span className="ml-2 text-xs bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">
+                  {worksheet.returnGrade === 'K' ? 'Kindergarten' : 
+                   worksheet.returnGrade === '1' ? '1st Grade' : 
+                   worksheet.returnGrade === '2' ? '2nd Grade' : worksheet.returnGrade}
+                </span>
+              )}
+              {worksheet.returnCategory && worksheet.returnCategory !== 'Activity' && (
+                <span className="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                  {worksheet.returnCategory === 'Games' ? 'Games' : 
+                   worksheet.returnCategory === 'Parent Guide' ? 'Guides' : worksheet.returnCategory}
+                </span>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -230,12 +256,6 @@ function WorksheetDetail() {
                 </p>
               </div>
               <div className="flex gap-3">
-                <Link
-                  to={`/${subject?.toLowerCase()}`}
-                  className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-50 transition-colors font-medium"
-                >
-                  ← Back to {subject}
-                </Link>
                 {pdfExists === null ? (
                   <div className="inline-flex items-center px-6 py-3 bg-gray-300 text-gray-600 rounded-xl font-semibold">
                     <div className="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600 mr-2"></div>
