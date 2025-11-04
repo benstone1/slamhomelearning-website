@@ -120,7 +120,10 @@ function WorksheetDetail() {
             <Link to="/" className="hover:text-emerald-600 transition-colors">Home</Link>
             <span className="mx-2">→</span>
             <Link 
-              to={`/${subject?.toLowerCase()}`} 
+              to={`/${subject?.toLowerCase()}${worksheet.returnGrade || worksheet.returnCategory ? `?${new URLSearchParams({
+                ...(worksheet.returnGrade && { grade: worksheet.returnGrade }),
+                ...(worksheet.returnCategory && { category: worksheet.returnCategory })
+              }).toString()}` : ''}`}
               className="hover:text-emerald-600 transition-colors"
             >
               {subject} Resources
@@ -128,6 +131,35 @@ function WorksheetDetail() {
             <span className="mx-2">→</span>
             <span className="text-gray-900">{worksheet.Filename.trim()}</span>
           </nav>
+          
+          {/* Back Button */}
+          <div className="mb-6">
+            <Link 
+              to={`/${subject?.toLowerCase()}${worksheet.returnGrade || worksheet.returnCategory ? `?${new URLSearchParams({
+                ...(worksheet.returnGrade && { grade: worksheet.returnGrade }),
+                ...(worksheet.returnCategory && { category: worksheet.returnCategory })
+              }).toString()}` : ''}`}
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to {subject} Resources
+              {worksheet.returnGrade && (
+                <span className="ml-2 text-xs bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">
+                  {worksheet.returnGrade === 'K' ? 'Kindergarten' : 
+                   worksheet.returnGrade === '1' ? '1st Grade' : 
+                   worksheet.returnGrade === '2' ? '2nd Grade' : worksheet.returnGrade}
+                </span>
+              )}
+              {worksheet.returnCategory && worksheet.returnCategory !== 'Activity' && (
+                <span className="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                  {worksheet.returnCategory === 'Games' ? 'Games' : 
+                   worksheet.returnCategory === 'Parent Guide' ? 'Guides' : worksheet.returnCategory}
+                </span>
+              )}
+            </Link>
+          </div>
         </div>
       </div>
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { checkMultiplePDFsExist } from '../utils/pdfChecker';
 
@@ -36,10 +37,14 @@ function parseCSVLine(line) {
 }
 
 function Subject({ subject }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const searchParams = new URLSearchParams(location.search);
+  
   const [allWorksheets, setAllWorksheets] = useState([]);
   const [filteredWorksheets, setFilteredWorksheets] = useState([]);
-  const [selectedGrade, setSelectedGrade] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('Activity'); // Default to Activities
+  const [selectedGrade, setSelectedGrade] = useState(searchParams.get('grade') || '');
+  const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || 'Activity'); // Default to Activities
   const [isCheckingFiles, setIsCheckingFiles] = useState(false);
 
   // Grade levels to display
@@ -55,6 +60,17 @@ function Subject({ subject }) {
     { key: 'Games', label: 'Games', icon: '🎲' },
     { key: 'Parent Guide', label: 'Guides', icon: '📖' }
   ];
+
+  // Function to update URL parameters when filters change
+  const updateURLParams = (newGrade, newCategory) => {
+    const params = new URLSearchParams();
+    if (newGrade) params.set('grade', newGrade);
+    if (newCategory) params.set('category', newCategory);
+    
+    const newSearch = params.toString();
+    const newURL = newSearch ? `?${newSearch}` : '';
+    navigate(newURL, { replace: true });
+  };
 
   // Function to check if worksheet matches the selected grade using boolean fields
   const worksheetMatchesGrade = (worksheet, gradeKey) => {
@@ -192,7 +208,10 @@ function Subject({ subject }) {
             {grades.map((grade) => (
               <button
                 key={grade.key}
-                onClick={() => setSelectedGrade(grade.key)}
+                onClick={() => {
+                  setSelectedGrade(grade.key);
+                  updateURLParams(grade.key, selectedCategory);
+                }}
                 className={`px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-200 ${
                   selectedGrade === grade.key
                     ? 'bg-emerald-600 text-white shadow-lg transform scale-105'
@@ -232,7 +251,10 @@ function Subject({ subject }) {
                     {categories.map((category) => (
                       <button
                         key={category.key}
-                        onClick={() => setSelectedCategory(category.key)}
+                        onClick={() => {
+                          setSelectedCategory(category.key);
+                          updateURLParams(selectedGrade, category.key);
+                        }}
                         className={`w-full flex items-center px-4 py-3 rounded-xl text-left transition-all duration-200 ${
                           selectedCategory === category.key
                             ? 'bg-emerald-100 text-emerald-800 border-2 border-emerald-300 shadow-sm'
@@ -260,7 +282,10 @@ function Subject({ subject }) {
                   
                   {/* Clear filter option */}
                   <button
-                    onClick={() => setSelectedCategory('')}
+                    onClick={() => {
+                      setSelectedCategory('');
+                      updateURLParams(selectedGrade, '');
+                    }}
                     className="w-full mt-4 px-4 py-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                   >
                     Show All Types
@@ -294,9 +319,13 @@ function Subject({ subject }) {
                         transition={{ duration: 0.4, delay: idx * 0.1 }}
                         className="group cursor-pointer"
                         onClick={() => {
-                          // Pass worksheet metadata via query string
-                          const params = new URLSearchParams(ws).toString();
-                          window.location.href = `/worksheet/${idx}?${params}`;
+                          // Pass worksheet metadata and filter state via query string
+                          const params = new URLSearchParams(ws);
+                          // Include current filter state for return navigation
+                          params.set('returnGrade', selectedGrade);
+                          params.set('returnCategory', selectedCategory);
+                          params.set('returnSubject', subject);
+                          window.location.href = `/worksheet/${idx}?${params.toString()}`;
                         }}
                       >
                         <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 group-hover:border-emerald-200 h-full">
