@@ -133,7 +133,7 @@ function ParentResources() {
         ).map(item => ({
           title: item.Filename.trim(),
           description: item.Description || 'Parent resource guide',
-          filename: `${item.Filename.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}.pdf`
+          filename: `${item.Filename.trim()}.pdf`
         }));
         
         setGuides(parentResourceGuides);
