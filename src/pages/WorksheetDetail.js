@@ -51,30 +51,16 @@ function WorksheetDetail() {
     }
   }, [worksheet.Filename, worksheet.Subject]);
 
-  // Function to parse and format grade levels
-  const formatGradeLevel = (gradeString) => {
-    if (!gradeString) return '';
+  // Function to format grade levels using boolean fields
+  const formatGradeLevel = (worksheet) => {
+    const grades = [];
+    if (worksheet.isKinder === 'TRUE') grades.push('K');
+    if (worksheet.isFirst === 'TRUE') grades.push('1st');
+    if (worksheet.isSecond === 'TRUE') grades.push('2nd');
     
-    // Remove quotes and extra spaces
-    const cleanGrade = gradeString.replace(/['"]/g, '').trim();
-    
-    // Handle single grades
-    if (cleanGrade === 'K') return 'K';
-    if (cleanGrade.match(/^\d+$/)) return `Grade ${cleanGrade}`;
-    
-    // Handle multiple grades (e.g., "K, 1", "K, 1, 2")
-    const grades = cleanGrade.split(',').map(g => g.trim()).filter(g => g);
-    if (grades.length > 1) {
-      const formattedGrades = grades.map(g => {
-        if (g === 'K') return 'K';
-        if (g.match(/^\d+$/)) return g;
-        return g;
-      });
-      return formattedGrades.join(', ');
-    }
-    
-    // Default case
-    return cleanGrade;
+    if (grades.length === 0) return '';
+    if (grades.length === 1) return grades[0];
+    return grades.join(', ');
   };
 
   if (!worksheet.Filename) {
@@ -164,16 +150,11 @@ function WorksheetDetail() {
           </h1>
 
           {/* Video Section */}
-          {worksheet['Video Link'] && worksheet['Video Link'] !== 'n/a' && worksheet['Video Link'].trim() !== '' && (
+          {worksheet['Video Title'] && worksheet['Video Title'] !== 'n/a' && worksheet['Video Title'].trim() !== '' && (
             <div className="mb-8">
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Related Video</h3>
-              {worksheet['Video Title'] && worksheet['Video Title'] !== 'n/a' && (
-                <p className="text-gray-700 mb-4 text-lg">{worksheet['Video Title']}</p>
-              )}
-              <YouTubeEmbed 
-                videoId={getYouTubeVideoId(worksheet['Video Link'])} 
-                title={worksheet['Video Title']} 
-              />
+              <p className="text-gray-700 mb-4 text-lg">{worksheet['Video Title']}</p>
+              <p className="text-gray-600 italic">Note: Video integration needs to be configured for this resource.</p>
             </div>
           )}
 

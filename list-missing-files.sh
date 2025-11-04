@@ -5,8 +5,8 @@ echo "============================================="
 
 csv_file="./public/worksheets/worksheet_metadata.csv"
 
-# Process CSV entries
-while IFS=',' read -r filename category subject grade_level category_type description; do
+# Process CSV entries with new format: Filename,Category,isKinder,isFirst,isSecond,Video Title,Subject
+while IFS=',' read -r filename category isKinder isFirst isSecond video_title subject; do
     # Skip header
     if [[ "$filename" == "Filename" ]]; then
         continue
@@ -19,6 +19,11 @@ while IFS=',' read -r filename category subject grade_level category_type descri
     # Skip empty lines
     if [[ -z "$clean_filename" ]]; then
         continue
+    fi
+    
+    # Add .pdf extension if not present
+    if [[ ! "$clean_filename" == *.pdf ]]; then
+        clean_filename="${clean_filename}.pdf"
     fi
     
     # Determine file path

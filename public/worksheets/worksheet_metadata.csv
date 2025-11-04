@@ -1,63 +1,70 @@
-Filename,Category,Grade Level,Video Title,Subject,Description
-10 Benefits from Doing Math Activities.pdf,10 Benefits from Doing Math Activities ,math,K,General
-100's  Chart.pdf,100's  Chart,math,K,General
-101 and Out Dice Game.pdf,101 and Out Dice Game ,math,K,Games
-Bump Dice Game.pdf,Bump Dice Game,math,K,Games
-Chart the Weather.pdf,Chart the Weather,math,K,General
-Color the Square Game.pdf,Color the Square Game ,math,K,Games
-Counting Books.pdf,Counting Books,math,K,General
-Dominoes Parking Lot Game.pdf,Dominoes Parking Lot Game,math,K,Games
-Doubles Race Game.pdf,Doubles Race Game ,math,K,Games
-Emoji Game.pdf,Emoji Game ,math,K,Games
-Family Animal Charades.pdf,Family Animal Charades,math,K,General
-Go Shopping Counting Game.pdf,Go Shopping Counting Game,math,K,Games
-I Spy Game.pdf,I Spy Game,math,K,Games
-Kindergarten Math Expectations.pdf,Kindergarten Math Expectations,math,K,Expectations
-Kindergarten Outside Resources Game Suggestions.pdf,Kindergarten Outside Resources Game Suggestions,math,K,Games
-Lego Tower Game.pdf,Lego Tower Game,math,K,Games
-Make the Same Number Game.pdf,Make the Same Number Game,math,K,Games
-Math Book Suggestions.pdf,Math Book Suggestions ,math,K,Suggestions
-Math Games in SLAM Video.pdf,Math Games in SLAM Video,math,K,Games
-Neighborhood Number Scavenger Hunt.pdf,Neighborhood Number Scavenger Hunt,math,K,General
-Number Line to 20.pdf,Number Line to 20 ,math,K,General
-Place Value Challenge Game.pdf,Place Value Challenge Game,math,K,Games
-Race to 10 and Race to 20 Game.pdf,Race to 10 and Race to 20 Game,math,K,Games
-Race to 50 Dice Game.pdf,Race to 50 Dice Game ,math,K,Games
-Spoons Game.pdf,Spoons Game,math,K,Games
-Wild Jacks Card Game.pdf,Wild Jacks Card Game,math,K,Games
-Yahtzee Game.pdf,Yahtzee Game ,math,K,Games
-First Grade Math Expectations.pdf,First Grade Math Expectations,math,1st,Expectations
-First Grade Outside Resources Game Suggestions.pdf,First Grade Outside Resources Game Suggestions,math,1st,Games
-Second Grade Math Expectations.pdf,Second Grade Math Expectations,math,2nd,Expectations
-Second Grade Outside Resources Math Game Suggestions.pdf,Second Grade Outside Resources Math Game Suggestions,math,2nd,Games
-Alphabet Book - Sample Letter Page.pdf,Alphabet Book   Sample Letter Page,reading,K,Book Resources
-Alphabet Book Suggestions.pdf,Alphabet Book Suggestions ,reading,K,Suggestions
-Asking Fun Questions.pdf,Asking Fun Questions,reading,K,General
-Book Club.pdf,Book Club,reading,K,Book Resources
-Create a Home Museum.pdf,Create a Home Museum,reading,K,General
-Dolch Word List.pdf,Dolch Word List,reading,K,Word Lists
-Draw Your Favortie Scene From the Story.pdf,Draw Your Favortie Scene From the Story,reading,K,General
-Fry Word List.pdf,Fry Word List ,reading,K,Word Lists
-Fun Writing Activities After a Read Aloud.pdf,Fun Writing Activities After a Read Aloud,reading,K,General
-Fundations First Grade Trick Word List.pdf,Fundations First Grade Trick Word List,reading,K,Word Lists
-Fundations Kindergarten Trick Word List.pdf,Fundations Kindergarten Trick Word List,reading,K,Word Lists
-Fundations Second Grade Trick Word List.pdf,Fundations Second Grade Trick Word List,reading,K,Word Lists
-Guest Reader.pdf,Guest Reader,reading,K,General
-Holiday Scrapbook.pdf,Holiday Scrapbook,reading,K,Book Resources
-Key Reading Terms.pdf,Key Reading Terms,reading,K,General
-Kindergarten Read Aloud Suggestions.pdf,Kindergarten Read Aloud Suggestions,reading,K,Suggestions
-Kindergarten Reading Literature Expectations.pdf,Kindergarten Reading Literature Expectations,reading,K,Expectations
-Listening Games.pdf,Listening Games,reading,K,Word Lists
-Message in a Bottle.pdf,Message in a Bottle,reading,K,General
-More Sight Word Games.pdf,More Sight Word Games,reading,K,Word Lists
-My Year in Review.pdf,My Year in Review,reading,K,General
-Possible Reading Concerns.pdf,Possible Reading Concerns ,reading,K,General
-Second Grade Read Aloud Book Suggestions.pdf,Second Grade Read Aloud Book Suggestions,reading,K,Suggestions
-Sight Word Games in SLAM Video.pdf,Sight Word Games in SLAM Video,reading,K,Word Lists
-Story Telling.pdf,Story Telling,reading,K,General
-Summer Reading Bookmark.pdf,Summer Reading Bookmark,reading,K,Book Resources
-Taking Photos Writing Prompt.pdf,Taking Photos Writing Prompt,reading,K,General
-Using a Stuffed Animal - Main Parts of a Story.pdf,Using a Stuffed Animal   Main Parts of a Story,reading,K,General
-First Grade Read Aloud Suggestions.pdf,First Grade Read Aloud Suggestions,reading,1st,Suggestions
-First Grade Reading Literature Expectations.pdf,First Grade Reading Literature Expectations,reading,1st,Expectations
-Second Grade Reading Literature Expectations.pdf,Second Grade Reading Literature Expectations,reading,2nd,Expectations
+Filename,Category,isKinder,isFirst,isSecond,Video Title,Subject
+Second Grade Read Aloud Suggestions,Activity,FALSE,FALSE,TRUE,n/a,Reading
+First Grade Read Aloud Suggestions,Activity,FALSE,TRUE,FALSE,n/a,Reading
+Kindergarten Read Aloud Suggestions,Activity,FALSE,TRUE,FALSE,n/a,Reading
+Kindergarten More Read Aloud Book Suggestions,Activity,TRUE,FALSE,FALSE,n/a,Reading
+Listening Games,Activity,TRUE,TRUE,FALSE,n/a,Reading
+Fundations Kindergarten Trick Word List,Activity,TRUE,FALSE,FALSE,Sight Words,Reading
+Fundations First Grade Trick Word List,Activity,FALSE,TRUE,FALSE,Sight Words,Reading
+Fundations Second Grade Trick Words,Activity,FALSE,FALSE,TRUE,Sight Words,Reading
+Alphabet Book Suggestions,Activity,TRUE,FALSE,FALSE,n/a,Reading
+More Kindergarten Read Aloud Suggestions,Activity,TRUE,FALSE,FALSE,n/a,Reading
+Kindergarten Reading Expectations,Parent Guide,TRUE,FALSE,FALSE,n/a,Reading
+Kindergarten Literature Expectations,Parent Guide,TRUE,FALSE,FALSE,n/a,Reading
+First Grade  Reading Expectations,Parent Guide,FALSE,TRUE,FALSE,n/a,Reading
+First Grade Literature Expectations,Parent Guide,FALSE,TRUE,FALSE,n/a,Reading
+Second Grade  Reading Expectations,Parent Guide,FALSE,FALSE,TRUE,n/a,Reading
+Second Grade Literature Expectations,Parent Guide,FALSE,FALSE,TRUE,n/a,Reading
+Using a Stuffed Animal - Main Parts of a Story,Activity,TRUE,TRUE,TRUE,Talking About Stories,Reading
+Questions to Ask When Reading Aloud,Activity,TRUE,TRUE,TRUE,Why Read Aloud,Reading
+Sight Word Games in SLAM Video,Games,TRUE,TRUE,TRUE,Sight Words,Reading
+Choosing Books - The Five Finger Rule,Activity,TRUE,TRUE,TRUE,Choosing Books - The Five Finger Rule,Reading
+More Sight Word Games,Games,TRUE,TRUE,TRUE,n/a,Reading
+Make Your Own Alphabet Book,Activity,TRUE,FALSE,FALSE,n/a,Reading
+Alphabet Book - Sample Letter Page,Activity,TRUE,FALSE,FALSE,n/a,Reading
+Draw Your Favortie Scene From the Story,Activity,TRUE,TRUE,TRUE,n/a,Reading
+Key Reading Terms,Parent Guide,TRUE,TRUE,TRUE,n/a,Reading
+Math Games in SLAM Math Games Video,Games,TRUE,TRUE,TRUE,Math Games,Math
+Counting Books,Parent Guide,TRUE,FALSE,FALSE,n/a,Math
+Math Book Suggestions,Parent Guide,TRUE,TRUE,FALSE,n/a,Math
+Kindergarten Outside Resources Game Suggestions,Parent Guide,TRUE,FALSE,FALSE,n/a,Math
+First Grade Outside Resources Game Suggestions,Parent Guide,FALSE,TRUE,FALSE,n/a,Math
+Second Grade Outside Resources Game Suggestions,Parent Guide,FALSE,FALSE,TRUE,n/a,Math
+Number Line to 20,Parent Guide,TRUE,TRUE,FALSE,n/a,Math
+100’s Chart,Parent Guide,FALSE,TRUE,TRUE,n/a,Math
+Yahtzee Game,Games,FALSE,FALSE,TRUE,n/a,Math
+Go Shopping Counting Game,Games,TRUE,TRUE,TRUE,n/a,Math
+Race to a Dollar Game,Games,FALSE,TRUE,TRUE,n/a,Math
+Which One Doesn't Belong Game,Games,FALSE,FALSE,TRUE,n/a,Math
+I Spy Game,Games,TRUE,TRUE,TRUE,n/a,Math
+Summer Reading Bookmark,Activity,TRUE,TRUE,TRUE,n/a,Reading
+Asking Fun Questions,Activity,TRUE,TRUE,TRUE,n/a,Reading
+Chart the Weather,Activity,TRUE,TRUE,TRUE,n/a,Math
+Holiday Scrapbook,Activity,TRUE,TRUE,TRUE,n/a,Reading
+Spoons Game,Games,TRUE,TRUE,TRUE,n/a,Math
+Message in a Bottle,Activity,TRUE,TRUE,TRUE,n/a,Reading
+Family Animal Charades,Activity,TRUE,TRUE,TRUE,n/a,Reading
+Guest Reader,Activity,TRUE,TRUE,TRUE,n/a,Reading
+Neighborhood Number Scavenger Hunt,Games,TRUE,TRUE,TRUE,n/a,Math
+Book Club,Activity,TRUE,TRUE,TRUE,n/a,Reading
+101 and Out Dice Game,Games,FALSE,FALSE,TRUE,n/a,Math
+Race to 50 Game,Games,FALSE,TRUE,TRUE,n/a,Math
+Lego Tower Game,Games,TRUE,FALSE,FALSE,n/a,Math
+Dominoes Parking Lot Game,Games,FALSE,TRUE,FALSE,n/a,Math
+10 Benefits from Doing Math Activities,Parent Guide,TRUE,TRUE,TRUE,n/a,Math
+Kindergarten Math Expectations,Parent Guide,TRUE,FALSE,FALSE,n/a,Math
+First Grade Math Expectations,Parent Guide,FALSE,TRUE,FALSE,n/a,Math
+Second Grade Math Expectations,Parent Guide,FALSE,FALSE,TRUE,n/a,Math
+Fry Word List,Parent Guide,TRUE,TRUE,TRUE,n/a,Reading
+Dolch Word List,Parent Guide,TRUE,TRUE,TRUE,n/a,Reading
+Possible Reading Concerns,Parent Guide,TRUE,TRUE,TRUE,n/a,Reading
+My Year in Review,Activity,TRUE,TRUE,TRUE,n/a,Reading
+Create a Home Museum,Activity,TRUE,TRUE,TRUE,n/a,Math
+Taking Photos Writing Prompt,Activity,TRUE,TRUE,TRUE,n/a,Reading
+Doubles Race Game,Games,FALSE,TRUE,FALSE,n/a,Math
+Bump Dice Game,Games,FALSE,TRUE,TRUE,n/a,Math
+Make the Same Number Game,Games,FALSE,TRUE,FALSE,n/a,Math
+Place Value Challenge Game,Games,FALSE,TRUE,TRUE,n/a,Math
+Emoji Game,Games,TRUE,FALSE,FALSE,n/a,Math
+Race to 10 and Race to 20 Game,Games,TRUE,FALSE,FALSE,n/a,Math
+Color the Square Game,Games,TRUE,FALSE,FALSE,n/a,Math

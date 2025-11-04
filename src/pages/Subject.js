@@ -56,17 +56,18 @@ function Subject({ subject }) {
     { key: 'Parent Guide', label: 'Guides', icon: '📖' }
   ];
 
-  // Function to check if worksheet matches the selected grade
+  // Function to check if worksheet matches the selected grade using boolean fields
   const worksheetMatchesGrade = (worksheet, gradeKey) => {
-    const gradeLevel = worksheet['Grade Level'];
-    if (!gradeLevel) return false;
-    
-    // Clean up the grade level string
-    const cleanGrades = gradeLevel.replace(/['"]/g, '').trim();
-    
-    // Split by comma and check if any grade matches
-    const grades = cleanGrades.split(',').map(g => g.trim());
-    return grades.includes(gradeKey);
+    switch(gradeKey) {
+      case 'K':
+        return worksheet.isKinder === 'TRUE';
+      case '1':
+        return worksheet.isFirst === 'TRUE';
+      case '2':
+        return worksheet.isSecond === 'TRUE';
+      default:
+        return false;
+    }
   };
 
   useEffect(() => {
@@ -93,7 +94,11 @@ function Subject({ subject }) {
           ws.Subject && 
           ws.Subject.toLowerCase() === subject.toLowerCase() &&
           ws.Subject !== 'Parent Resources Guide'
-        );
+        ).map(ws => ({
+          ...ws,
+          // Add .pdf extension to filename if not present
+          Filename: ws.Filename && !ws.Filename.endsWith('.pdf') ? `${ws.Filename}.pdf` : ws.Filename
+        }));
         
         // Check which PDFs actually exist
         const validWorksheets = await checkMultiplePDFsExist(subjectFiltered);
@@ -317,7 +322,7 @@ function Subject({ subject }) {
                             <h3 className="text-lg font-semibold text-gray-900 group-hover:text-emerald-700 transition-colors line-clamp-2 flex-1">
                               {(ws.Filename || 'Untitled').trim()}
                             </h3>
-                            {ws['Video Link'] && ws['Video Link'] !== 'n/a' && ws['Video Link'].trim() !== '' && (
+                            {ws['Video Title'] && ws['Video Title'] !== 'n/a' && ws['Video Title'].trim() !== '' && (
                               <div className="ml-2 flex-shrink-0">
                                 <div className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
                                   <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
