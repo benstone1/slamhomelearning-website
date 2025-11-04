@@ -4,9 +4,9 @@ First Grade Read Aloud Suggestions,Activity,FALSE,TRUE,FALSE,n/a,Reading
 Kindergarten Read Aloud Suggestions,Activity,FALSE,TRUE,FALSE,n/a,Reading
 Kindergarten More Read Aloud Suggestions,Activity,TRUE,FALSE,FALSE,n/a,Reading
 Listening Games,Activity,TRUE,TRUE,FALSE,n/a,Reading
-Fundations Kindergarten Trick Word List,Activity,TRUE,FALSE,FALSE,n/a,Reading
-Fundations First Grade Trick Word List,Activity,FALSE,TRUE,FALSE,n/a,Reading
-Fundations Second Grade Trick Words,Activity,FALSE,FALSE,TRUE,n/a,Reading
+Fundations Kindergarten Trick Word List,Guide,TRUE,FALSE,FALSE,n/a,Reading
+Fundations First Grade Trick Word List,Guide,FALSE,TRUE,FALSE,n/a,Reading
+Fundations Second Grade Trick Words,Guide,FALSE,FALSE,TRUE,n/a,Reading
 Alphabet Book Suggestions,Activity,TRUE,FALSE,FALSE,n/a,Reading
 Kindergarten Reading Expectations,Parent Guide,TRUE,FALSE,FALSE,n/a,Reading
 Kindergarten Literature Expectations,Parent Guide,TRUE,FALSE,FALSE,n/a,Reading
@@ -69,3 +69,5 @@ Color the Square Game,Games,TRUE,FALSE,FALSE,n/a,Math
 Tips for Parent Teacher Conversations,Parent Guide, TRUE, TRUE, TRUE, n/a, Parent Guide
 Fun Writing Activities After a Read Aloud, Activity, FALSE, TRUE, TRUE, n/a, Reading
 Wild Jacks Card Game,Games,FALSE,FALSE,TRUE,n/a,Math
+Questions to Ask When Reading Aloud, Activity, True, TRUE, TRUE, Choosing Books - The Five Finger Rule, Reading
+Choosing Books - The Five Finger Rule, Activity, TRUE, FALSE, FALSE, Choosing Books - The Five Finger Rule, Reading

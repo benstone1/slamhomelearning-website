@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { checkPDFExists } from '../utils/pdfChecker';
 
@@ -32,6 +32,7 @@ function YouTubeEmbed({ videoId, title }) {
 
 function WorksheetDetail() {
   const location = useLocation();
+  const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
   const worksheet = {};
   for (const [key, value] of params.entries()) {
@@ -90,6 +91,20 @@ function WorksheetDetail() {
     return grades.join(', ');
   };
 
+  // Function to handle back navigation with filter preservation
+  const handleBackNavigation = () => {
+    const subject = worksheet.returnSubject || worksheet.Subject;
+    const params = new URLSearchParams();
+    
+    if (worksheet.returnGrade) params.set('grade', worksheet.returnGrade);
+    if (worksheet.returnCategory) params.set('category', worksheet.returnCategory);
+    
+    const queryString = params.toString();
+    const targetPath = `/${subject?.toLowerCase()}${queryString ? `?${queryString}` : ''}`;
+    
+    navigate(targetPath);
+  };
+
   if (!worksheet.Filename) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-sky-50 to-emerald-50 flex items-center justify-center">
@@ -119,27 +134,21 @@ function WorksheetDetail() {
           <nav className="flex items-center text-sm text-gray-600 mb-4">
             <Link to="/" className="hover:text-emerald-600 transition-colors">Home</Link>
             <span className="mx-2">→</span>
-            <Link 
-              to={`/${subject?.toLowerCase()}${worksheet.returnGrade || worksheet.returnCategory ? `?${new URLSearchParams({
-                ...(worksheet.returnGrade && { grade: worksheet.returnGrade }),
-                ...(worksheet.returnCategory && { category: worksheet.returnCategory })
-              }).toString()}` : ''}`}
-              className="hover:text-emerald-600 transition-colors"
+            <button 
+              onClick={handleBackNavigation}
+              className="hover:text-emerald-600 transition-colors cursor-pointer bg-transparent border-none p-0 text-sm text-gray-600 underline-offset-2 hover:underline"
             >
               {subject} Resources
-            </Link>
+            </button>
             <span className="mx-2">→</span>
             <span className="text-gray-900">{worksheet.Filename.trim()}</span>
           </nav>
           
           {/* Back Button */}
           <div className="mb-6">
-            <Link 
-              to={`/${subject?.toLowerCase()}${worksheet.returnGrade || worksheet.returnCategory ? `?${new URLSearchParams({
-                ...(worksheet.returnGrade && { grade: worksheet.returnGrade }),
-                ...(worksheet.returnCategory && { category: worksheet.returnCategory })
-              }).toString()}` : ''}`}
-              className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+            <button 
+              onClick={handleBackNavigation}
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
             >
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -158,7 +167,7 @@ function WorksheetDetail() {
                    worksheet.returnCategory === 'Parent Guide' ? 'Guides' : worksheet.returnCategory}
                 </span>
               )}
-            </Link>
+            </button>
           </div>
         </div>
       </div>
