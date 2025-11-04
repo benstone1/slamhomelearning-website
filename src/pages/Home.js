@@ -66,7 +66,7 @@ function Home() {
               title="Playful"
               image="/images/kite.svg"
             >
-              Children thrive when learning feels like fun rather than work. That's why we suggest activities and games that spark curiosity, laughter, and joy. When kids are engaged in play, they're more open to practicing new skills with less stress.
+              Children thrive when learning feels like fun rather than work. That's why we have activities and games that spark curiosity, laughter, and joy. When kids are engaged in play, they're more open to practicing skills.
             </FeatureCard>
             <FeatureCard
               title="Research-Based"
@@ -78,7 +78,7 @@ function Home() {
               title="Accessible"
               image="/images/open_door.svg"
             >
-              Parents play the most important role in a child’s learning journey. We aim to give you the tools, knowledge, and encouragement you need to feel confident guiding your child. This is why it’s important to us that families will always have access to our programs and materials at no cost. 
+              Parents play the most important role in a child’s learning journey. We give you the tools, knowledge, and encouragement you need to feel confident guiding your child. This is why it’s important to us that families will always have access to our programs and materials at no cost. 
             </FeatureCard>
           </div>
         </div>
