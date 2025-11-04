@@ -2,18 +2,18 @@ Filename,Category,isKinder,isFirst,isSecond,Video Title,Subject
 Second Grade Read Aloud Suggestions,Activity,FALSE,FALSE,TRUE,n/a,Reading
 First Grade Read Aloud Suggestions,Activity,FALSE,TRUE,FALSE,n/a,Reading
 Kindergarten Read Aloud Suggestions,Activity,FALSE,TRUE,FALSE,n/a,Reading
-Kindergarten More Read Aloud Book Suggestions,Activity,TRUE,FALSE,FALSE,n/a,Reading
+Kindergarten More Read Aloud Suggestions,Activity,TRUE,FALSE,FALSE,n/a,Reading
 Listening Games,Activity,TRUE,TRUE,FALSE,n/a,Reading
-Fundations Kindergarten Trick Word List,Activity,TRUE,FALSE,FALSE,Sight Words,Reading
-Fundations First Grade Trick Word List,Activity,FALSE,TRUE,FALSE,Sight Words,Reading
-Fundations Second Grade Trick Words,Activity,FALSE,FALSE,TRUE,Sight Words,Reading
+Fundations Kindergarten Trick Word List,Activity,TRUE,FALSE,FALSE,n/a,Reading
+Fundations First Grade Trick Word List,Activity,FALSE,TRUE,FALSE,n/a,Reading
+Fundations Second Grade Trick Words,Activity,FALSE,FALSE,TRUE,n/a,Reading
 Alphabet Book Suggestions,Activity,TRUE,FALSE,FALSE,n/a,Reading
 More Kindergarten Read Aloud Suggestions,Activity,TRUE,FALSE,FALSE,n/a,Reading
 Kindergarten Reading Expectations,Parent Guide,TRUE,FALSE,FALSE,n/a,Reading
 Kindergarten Literature Expectations,Parent Guide,TRUE,FALSE,FALSE,n/a,Reading
-First Grade  Reading Expectations,Parent Guide,FALSE,TRUE,FALSE,n/a,Reading
+First Grade Reading Expectations,Parent Guide,FALSE,TRUE,FALSE,n/a,Reading
 First Grade Literature Expectations,Parent Guide,FALSE,TRUE,FALSE,n/a,Reading
-Second Grade  Reading Expectations,Parent Guide,FALSE,FALSE,TRUE,n/a,Reading
+Second Grade Reading Expectations,Parent Guide,FALSE,FALSE,TRUE,n/a,Reading
 Second Grade Literature Expectations,Parent Guide,FALSE,FALSE,TRUE,n/a,Reading
 Using a Stuffed Animal - Main Parts of a Story,Activity,TRUE,TRUE,TRUE,Talking About Stories,Reading
 Questions to Ask When Reading Aloud,Activity,TRUE,TRUE,TRUE,Why Read Aloud,Reading
@@ -24,14 +24,14 @@ Make Your Own Alphabet Book,Activity,TRUE,FALSE,FALSE,n/a,Reading
 Alphabet Book - Sample Letter Page,Activity,TRUE,FALSE,FALSE,n/a,Reading
 Draw Your Favortie Scene From the Story,Activity,TRUE,TRUE,TRUE,n/a,Reading
 Key Reading Terms,Parent Guide,TRUE,TRUE,TRUE,n/a,Reading
-Math Games in SLAM Math Games Video,Games,TRUE,TRUE,TRUE,Math Games,Math
+Math Games,Games,TRUE,TRUE,TRUE,Math Games,Math
 Counting Books,Parent Guide,TRUE,FALSE,FALSE,n/a,Math
 Math Book Suggestions,Parent Guide,TRUE,TRUE,FALSE,n/a,Math
 Kindergarten Outside Resources Game Suggestions,Parent Guide,TRUE,FALSE,FALSE,n/a,Math
 First Grade Outside Resources Game Suggestions,Parent Guide,FALSE,TRUE,FALSE,n/a,Math
 Second Grade Outside Resources Game Suggestions,Parent Guide,FALSE,FALSE,TRUE,n/a,Math
 Number Line to 20,Parent Guide,TRUE,TRUE,FALSE,n/a,Math
-100’s Chart,Parent Guide,FALSE,TRUE,TRUE,n/a,Math
+100's Chart,Parent Guide,FALSE,TRUE,TRUE,n/a,Math
 Yahtzee Game,Games,FALSE,FALSE,TRUE,n/a,Math
 Go Shopping Counting Game,Games,TRUE,TRUE,TRUE,n/a,Math
 Race to a Dollar Game,Games,FALSE,TRUE,TRUE,n/a,Math

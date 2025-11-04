@@ -39,6 +39,7 @@ function WorksheetDetail() {
   }
 
   const [pdfExists, setPdfExists] = useState(null); // null = checking, true/false = result
+  const [videoUrl, setVideoUrl] = useState(null);
   
   // Check if PDF exists when component loads
   useEffect(() => {
@@ -50,6 +51,32 @@ function WorksheetDetail() {
       setPdfExists(false);
     }
   }, [worksheet.Filename, worksheet.Subject]);
+
+  // Load video URL from video_links.csv
+  useEffect(() => {
+    if (worksheet['Video Title'] && worksheet['Video Title'] !== 'n/a' && worksheet['Video Title'].trim() !== '') {
+      fetch('/video_links.csv')
+        .then(res => res.text())
+        .then(text => {
+          const lines = text.split('\n').filter(line => line.trim());
+          const headers = lines[0].split(',');
+          
+          for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(',');
+            const title = values[0]?.trim();
+            const link = values[1]?.trim();
+            
+            if (title && title === worksheet['Video Title'].trim()) {
+              setVideoUrl(link);
+              break;
+            }
+          }
+        })
+        .catch(error => {
+          console.warn('Error loading video links:', error);
+        });
+    }
+  }, [worksheet['Video Title']]);
 
   // Function to format grade levels using boolean fields
   const formatGradeLevel = (worksheet) => {
@@ -154,7 +181,21 @@ function WorksheetDetail() {
             <div className="mb-8">
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Related Video</h3>
               <p className="text-gray-700 mb-4 text-lg">{worksheet['Video Title']}</p>
-              <p className="text-gray-600 italic">Note: Video integration needs to be configured for this resource.</p>
+              {videoUrl ? (
+                <YouTubeEmbed 
+                  videoId={getYouTubeVideoId(videoUrl)} 
+                  title={worksheet['Video Title']} 
+                />
+              ) : (
+                <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                  <div className="text-gray-400 mb-2">
+                    <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <p className="text-gray-600">Video not found for "{worksheet['Video Title']}"</p>
+                </div>
+              )}
             </div>
           )}
 
