@@ -129,7 +129,7 @@ function ParentResources() {
         
         // Filter for Parent Resources Guide items only
         const parentResourceGuides = data.filter(item => 
-          item.Subject === 'Parent Resources Guide'
+          item.Subject === 'Parent Guide' || item.Subject === 'Parent Resources Guide'
         ).map(item => ({
           title: item.Filename.trim(),
           description: item.Description || 'Parent resource guide',
