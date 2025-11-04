@@ -150,6 +150,9 @@ function Subject({ subject }) {
     if (categoryKey === 'Games') {
       return category === 'Games' || category === 'Ganes'; // Handle typo in CSV
     }
+    if (categoryKey === 'Parent Guide') {
+      return category === 'Parent Guide' || category === 'Guide'; // Handle both Guide variations
+    }
     return category === categoryKey;
   };
 
