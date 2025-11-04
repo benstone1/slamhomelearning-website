@@ -4,9 +4,9 @@ First Grade Read Aloud Suggestions,Activity,FALSE,TRUE,FALSE,n/a,Reading
 Kindergarten Read Aloud Suggestions,Activity,FALSE,TRUE,FALSE,n/a,Reading
 Kindergarten More Read Aloud Suggestions,Activity,TRUE,FALSE,FALSE,n/a,Reading
 Listening Games,Activity,TRUE,TRUE,FALSE,n/a,Reading
-Fundations Kindergarten Trick Word List,Guide,TRUE,FALSE,FALSE,n/a,Reading
-Fundations First Grade Trick Word List,Guide,FALSE,TRUE,FALSE,n/a,Reading
-Fundations Second Grade Trick Words,Guide,FALSE,FALSE,TRUE,n/a,Reading
+Fundations Kindergarten Trick Word List,Parent Guide,TRUE,FALSE,FALSE,n/a,Reading
+Fundations First Grade Trick Word List,Parent Guide,FALSE,TRUE,FALSE,n/a,Reading
+Fundations Second Grade Trick Words,Parent Guide,FALSE,FALSE,TRUE,n/a,Reading
 Alphabet Book Suggestions,Activity,TRUE,FALSE,FALSE,n/a,Reading
 Kindergarten Reading Expectations,Parent Guide,TRUE,FALSE,FALSE,n/a,Reading
 Kindergarten Literature Expectations,Parent Guide,TRUE,FALSE,FALSE,n/a,Reading
@@ -66,7 +66,7 @@ Place Value Challenge Game,Games,FALSE,TRUE,TRUE,n/a,Math
 Emoji Game,Games,TRUE,FALSE,FALSE,n/a,Math
 Race to 10 and Race to 20 Game,Games,TRUE,FALSE,FALSE,n/a,Math
 Color the Square Game,Games,TRUE,FALSE,FALSE,n/a,Math
-Tips for Parent Teacher Conversations,Parent Guide, TRUE, TRUE, TRUE, n/a, Parent Guide
+Tips for Parent Teacher Conversations,Parent Resources Guide, TRUE, TRUE, TRUE, n/a, Parent Resources Guide
 Fun Writing Activities After a Read Aloud, Activity, FALSE, TRUE, TRUE, n/a, Reading
 Wild Jacks Card Game,Games,FALSE,FALSE,TRUE,n/a,Math
 Questions to Ask When Reading Aloud, Activity, True, TRUE, TRUE, Choosing Books - The Five Finger Rule, Reading
