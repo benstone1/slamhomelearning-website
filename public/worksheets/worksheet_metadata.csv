@@ -1,8 +1,7 @@
 Filename,Category,isKinder,isFirst,isSecond,Video Title,Subject
 Second Grade Read Aloud Suggestions,Activity,FALSE,FALSE,TRUE,n/a,Reading
 First Grade Read Aloud Suggestions,Activity,FALSE,TRUE,FALSE,n/a,Reading
-Kindergarten Read Aloud Suggestions,Activity,FALSE,TRUE,FALSE,n/a,Reading
-Kindergarten More Read Aloud Suggestions,Activity,TRUE,FALSE,FALSE,n/a,Reading
+Kindergarten Read Aloud Suggestions,Activity,TRUE,FALSE,FALSE,n/a,Reading
 Listening Games,Activity,TRUE,TRUE,FALSE,n/a,Reading
 Fundations Kindergarten Trick Word List,Parent Guide,TRUE,FALSE,FALSE,n/a,Reading
 Fundations First Grade Trick Word List,Parent Guide,FALSE,TRUE,FALSE,n/a,Reading
@@ -27,7 +26,7 @@ Counting Books,Parent Guide,TRUE,FALSE,FALSE,n/a,Math
 Math Book Suggestions,Parent Guide,TRUE,TRUE,FALSE,n/a,Math
 Kindergarten Outside Resources Game Suggestions,Parent Guide,TRUE,FALSE,FALSE,n/a,Math
 First Grade Outside Resources Game Suggestions,Parent Guide,FALSE,TRUE,FALSE,n/a,Math
-Second Grade Outside Resources Game Suggestions,Parent Guide,FALSE,FALSE,TRUE,n/a,Math
+Second Grade Game Suggestions,Parent Guide,FALSE,FALSE,TRUE,n/a,Math
 Number Line to 20,Parent Guide,FALSE,TRUE,TRUE,n/a,Math
 100's Chart,Parent Guide,FALSE,TRUE,TRUE,n/a,Math
 Yahtzee Game,Games,FALSE,FALSE,TRUE,n/a,Math
