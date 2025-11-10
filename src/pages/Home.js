@@ -47,7 +47,13 @@ function Home() {
           >
             SLAM (Supporting Literacy And Math) provides Kindergarten through Second Grade families with tools and resources to make learning at home fun.
           </motion.p>
-          <div className="mt-6 flex justify-center gap-3">
+          <div className="mt-6 flex justify-center gap-3 flex-wrap">
+            <a href="/reading" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#1E90D2'}}>
+              Explore Reading Resources
+            </a>
+            <a href="/math" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#1E90D2'}}>
+              Explore Math Resources
+            </a>
             <a href="/videos" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#F9281B'}}>
               Explore SLAM Videos
             </a>
