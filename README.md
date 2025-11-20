@@ -9,7 +9,6 @@ This project is a full-stack web application for the SLAM program.
 
 ### Prerequisites
 - Node.js & npm
-- MongoDB (local or Atlas)
 
 ### Frontend Setup
 1. Navigate to `client` folder
@@ -27,5 +26,3 @@ This project is a full-stack web application for the SLAM program.
 - Worksheet resource details
 - PDF upload and storage
 
----
-Replace placeholder images and text as needed.
