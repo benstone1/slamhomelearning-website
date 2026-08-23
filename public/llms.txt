@@ -1,0 +1,25 @@
+# SLAM Home Learning
+
+> SLAM (Supporting Literacy And Math) provides free learning resources for families with children in kindergarten through second grade.
+
+## Main pages
+
+- [Home](/)
+- [Reading resources](/reading)
+- [Math resources](/math)
+- [Videos](/videos)
+- [Parent resources](/parent-resources)
+- [About SLAM](/about)
+
+## Podcast
+
+- [From Classroom to Home podcast](/podcast)
+
+From Classroom to Home is a SLAM podcast for parents of children in kindergarten through second grade. Each episode features conversations with experts about a child's school experience and practical ways to support learning at home.
+
+The first episodes are:
+
+- Welcome to From Classroom to Home: an introduction to the host, the reason for the podcast, and what listeners can expect.
+- Understanding Your Child's Reading Progress: Alexandra Needle discusses reading development from kindergarten through second grade, signs that may prompt teacher concerns, and simple activities families can do at home.
+
+Podcast episodes are coming soon on YouTube, Spotify, and Apple Podcasts.
