@@ -11,16 +11,16 @@ const episodes = [
   {
     number: '01',
     title: 'Welcome to From Classroom to Home',
-    description: 'In this brief introductory episode, I share a little about my background, why I created From Classroom to Home, and what you can expect from the podcast.'
+    description: 'In this short introductory episode, I share a little about my background, why I created From Classroom to Home, and what listeners can expect from the podcast.'
   },
   {
     number: '02',
     title: "Understanding Your Child's Reading Progress",
-    description: "How do you know if your child is on track with reading? In this episode, I am joined by Alexandra Needle, a Reading Specialist who currently works as a Curriculum Designer with McGraw Hill Publishing, to talk about how reading typically develops from kindergarten through second grade.",
+    description: "How can you tell whether your child is on track with reading? I talk with Alexandra Needle, a Reading Specialist and Curriculum Designer with McGraw Hill Publishing, about how reading typically develops from kindergarten through second grade.",
     points: [
-      'The reading skills children should have by the end of each grade',
-      'What might cause a teacher to have concerns about a child\'s progress',
-      'Simple activities you can do at home to support your child\'s reading'
+      'The reading skills children typically develop by the end of each grade',
+      'Signs that may prompt a teacher to have concerns about a child\'s progress',
+      'Simple activities you can do at home to support reading'
     ]
   }
 ];
@@ -49,8 +49,8 @@ function Podcast() {
       <section className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="mb-12">
           <h2 className="mb-5 text-3xl font-bold text-sky-700">From Classroom to Home</h2>
-          <p className="text-lg leading-relaxed text-gray-700">From Classroom to Home is a podcast from Supporting Literacy And Math (SLAM) for parents of children in kindergarten through second grade.</p>
-          <p className="mt-5 text-lg leading-relaxed text-gray-700">In each episode, I am joined by an expert guest to talk about an important part of your child&apos;s school experience, helping you better understand what is happening in the classroom and offering helpful ideas for supporting your child at home.</p>
+          <p className="text-lg leading-relaxed text-gray-700">From Classroom to Home is a SLAM podcast for parents of children in kindergarten through second grade.</p>
+          <p className="mt-5 text-lg leading-relaxed text-gray-700">In each episode, I talk with an expert guest about an important part of your child&apos;s school experience. Together, we&apos;ll explore what is happening in the classroom and share practical ideas for supporting learning at home.</p>
         </motion.div>
 
         <div className="mb-12 border-y border-gray-200 py-8">
@@ -69,11 +69,11 @@ function Podcast() {
 
         <div>
           <p className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-sky-600">Episodes</p>
-          <h2 className="mb-7 text-3xl font-bold text-gray-900">Conversations you can use at home</h2>
+          <h2 className="mb-7 text-3xl font-bold text-gray-900">Conversations to support learning at home</h2>
           <div className="space-y-5">
             {episodes.map((episode) => (
               <motion.article key={episode.number} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.45 }} className="border border-gray-200 bg-white p-6 shadow-md sm:p-8">
-                <div className="flex gap-5"><span className="text-3xl font-bold text-red-600">{episode.number}</span><div><h3 className="mb-3 text-xl font-bold text-gray-900">{episode.title}</h3><p className="leading-relaxed text-gray-700">{episode.description}</p>{episode.points && <ul className="mt-5 space-y-3 text-gray-700">{episode.points.map((point) => <li key={point} className="flex gap-3"><span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />{point}</li>)}</ul>}</div></div>
+                <div className="flex gap-5"><span className="text-3xl font-bold text-sky-600">{episode.number}</span><div><h3 className="mb-3 text-xl font-bold text-gray-900">{episode.title}</h3><p className="leading-relaxed text-gray-700">{episode.description}</p>{episode.points && <ul className="mt-5 space-y-3 text-gray-700">{episode.points.map((point) => <li key={point} className="flex gap-3"><span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />{point}</li>)}</ul>}</div></div>
               </motion.article>
             ))}
           </div>
