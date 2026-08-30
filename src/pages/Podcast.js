@@ -2,8 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const platforms = [
-  { name: 'Spotify', detail: 'Listen on Spotify', url: 'https://open.spotify.com/show/0347598USjVejZUHlzQ8Tv', status: 'live' },
-  { name: 'YouTube', detail: 'Watch the video podcast', url: 'https://www.youtube.com/results?search_query=From+Classroom+to+Home+SLAM+podcast', status: 'live' }
+  { name: 'Spotify', detail: 'Listen on Spotify', url: 'https://open.spotify.com/show/0347598USjVejZUHlzQ8Tv' },
+  { name: 'YouTube', detail: 'Watch the video podcast', url: 'https://www.youtube.com/@SLAMhomelearning/podcasts' }
 ];
 
 const episodes = [
@@ -61,7 +61,6 @@ function Podcast() {
             {platforms.map((platform) => (
               <a key={platform.name} href={platform.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between gap-4 border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md hover:border-sky-300 transition-all cursor-pointer">
                 <div><p className="font-bold text-gray-900">{platform.name}</p><p className="text-sm text-gray-600">{platform.detail}</p></div>
-                <span className={`shrink-0 text-xs font-bold uppercase tracking-wide ${platform.status === 'live' ? 'text-emerald-600' : 'text-gray-400'}`}>{platform.status === 'live' ? 'Live' : 'Soon'}</span>
               </a>
             ))}
           </div>
