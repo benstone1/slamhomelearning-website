@@ -2,9 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const platforms = [
-  { name: 'YouTube', detail: 'Watch the video podcast' },
-  { name: 'Spotify', detail: 'Listen on Spotify' },
-  { name: 'Apple Podcasts', detail: 'Listen on Apple Podcasts' }
+  { name: 'Spotify', detail: 'Listen on Spotify', url: 'https://open.spotify.com/show/0347598USjVejZUHlzQ8Tv', status: 'live' },
+  { name: 'YouTube', detail: 'Watch the video podcast', url: 'https://www.youtube.com/results?search_query=From+Classroom+to+Home+SLAM+podcast', status: 'live' }
 ];
 
 const episodes = [
@@ -54,15 +53,16 @@ function Podcast() {
         </motion.div>
 
         <div className="mb-12 border-y border-gray-200 py-8">
-          <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
-            <div><p className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-red-600">Listen soon</p><h2 className="text-3xl font-bold text-gray-900">Find the podcast</h2></div>
+          <div className="mb-6">
+            <p className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-sky-600">Listen now</p>
+            <h2 className="text-3xl font-bold text-gray-900">Find the podcast</h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {platforms.map((platform) => (
-              <div key={platform.name} className="flex items-center justify-between gap-4 border border-gray-200 bg-white p-4 shadow-sm">
+              <a key={platform.name} href={platform.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between gap-4 border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md hover:border-sky-300 transition-all cursor-pointer">
                 <div><p className="font-bold text-gray-900">{platform.name}</p><p className="text-sm text-gray-600">{platform.detail}</p></div>
-                <span className="shrink-0 text-xs font-bold uppercase tracking-wide text-red-600">Coming soon</span>
-              </div>
+                <span className={`shrink-0 text-xs font-bold uppercase tracking-wide ${platform.status === 'live' ? 'text-emerald-600' : 'text-gray-400'}`}>{platform.status === 'live' ? 'Live' : 'Soon'}</span>
+              </a>
             ))}
           </div>
         </div>
