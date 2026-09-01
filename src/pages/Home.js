@@ -29,39 +29,54 @@ function Home() {
 
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-4 py-14">
-        <div className="text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: '#1E90D2' }}
-          >
-            SLAM
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed mb-6"
-          >
-            SLAM (Supporting Literacy And Math) provides Kindergarten through Second Grade families with tools and resources to make learning at home fun.
-          </motion.p>
-          <div className="mt-6 flex flex-col items-center gap-3">
-            <div className="flex justify-center gap-3 flex-wrap">
-              <a href="/reading" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#1E90D2'}}>
-                Reading Resources
-              </a>
-              <a href="/math" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#1E90D2'}}>
-                Math Resources
-              </a>
-            </div>
-            <div className="flex justify-center">
-              <a href="/videos" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#F9281B'}}>
-                Explore SLAM Videos
-              </a>
+        <div className="grid items-center gap-10 md:grid-cols-[1.05fr_0.95fr]">
+          <div className="text-left">
+            <motion.h1
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="text-4xl md:text-5xl font-bold mb-4"
+              style={{ color: '#1E90D2' }}
+            >
+              SLAM
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-xl text-gray-700 max-w-xl leading-relaxed mb-6"
+            >
+              SLAM (Supporting Literacy And Math) provides Kindergarten through Second Grade families with tools and resources to make learning at home fun.
+            </motion.p>
+            <div className="mt-6 flex flex-col items-start gap-3">
+              <div className="flex flex-wrap gap-3">
+                <a href="/reading" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#1E90D2'}}>
+                  Reading Resources
+                </a>
+                <a href="/math" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#1E90D2'}}>
+                  Math Resources
+                </a>
+              </div>
+              <div className="flex justify-start">
+                <a href="/videos" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#F9281B'}}>
+                  Explore SLAM Videos
+                </a>
+              </div>
             </div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="relative"
+          >
+            <img
+              src="/images/SLAM%20Home%20Page%20Photo.with%20Stuffed%20Animalsjpeg.jpeg"
+              alt="Children's learning space with books and stuffed animals"
+              className="w-full h-[420px] object-cover rounded-3xl shadow-xl border border-gray-200"
+            />
+          </motion.div>
         </div>
       </section>
 

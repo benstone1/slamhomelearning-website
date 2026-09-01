@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 
 const platforms = [
   { name: 'Spotify', detail: 'Listen on Spotify', url: 'https://open.spotify.com/show/0347598USjVejZUHlzQ8Tv' },
-  { name: 'YouTube', detail: 'Watch the video podcast', url: 'https://www.youtube.com/@SLAMhomelearning/podcasts' }
+  { name: 'YouTube', detail: 'Watch the video podcast', url: 'https://www.youtube.com/@SLAMhomelearning/podcasts' },
+  { name: 'Apple Podcasts', detail: 'Listen on Apple Podcasts', url: 'https://podcasts.apple.com/us/podcast/from-classroom-to-home/id6801576297' }
 ];
 
 const episodes = [
