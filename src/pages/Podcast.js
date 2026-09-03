@@ -41,7 +41,7 @@ function Podcast() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.15 }} className="flex justify-center md:justify-end">
-            <img src="/images/FCH_Podcast%20Art.png" alt="From Classroom to Home podcast artwork" className="h-auto w-full max-w-sm object-contain" />
+            <img src="/images/Podcast%20Backpack%20Image.png" alt="Backpack with books and snacks for learning at home" className="h-auto w-full max-w-sm object-contain" />
           </motion.div>
         </div>
       </section>

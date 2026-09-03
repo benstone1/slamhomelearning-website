@@ -61,7 +61,7 @@ function Home() {
                 <a href="/videos" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#F9281B'}}>
                   Explore SLAM Videos
                 </a>
-                <a href="/podcast" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#0EA5E9'}}>
+                <a href="/podcast" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#F9281B'}}>
                   Listen to the Podcast
                 </a>
               </div>
