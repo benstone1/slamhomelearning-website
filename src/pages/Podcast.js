@@ -48,7 +48,7 @@ function Podcast() {
 
       <section className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="mb-12">
-          <h2 className="mb-5 text-3xl font-bold text-sky-700">From Classroom to Home</h2>
+          <h2 className="mb-5 text-3xl font-bold text-sky-700">About From Classroom to Home</h2>
           <p className="text-lg leading-relaxed text-gray-700">From Classroom to Home is a SLAM podcast for parents of children in kindergarten through second grade.</p>
           <p className="mt-5 text-lg leading-relaxed text-gray-700">In each episode, I talk with an expert guest about an important part of your child&apos;s school experience. Together, we&apos;ll explore what is happening in the classroom and share practical ideas for supporting learning at home.</p>
         </motion.div>

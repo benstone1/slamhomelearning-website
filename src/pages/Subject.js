@@ -328,7 +328,7 @@ function Subject({ subject }) {
                           params.set('returnGrade', selectedGrade);
                           params.set('returnCategory', selectedCategory);
                           params.set('returnSubject', subject);
-                          window.location.href = `/worksheet/${idx}?${params.toString()}`;
+                          navigate(`/worksheet/${idx}?${params.toString()}`);
                         }}
                       >
                         <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 group-hover:border-emerald-200 h-full">

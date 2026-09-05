@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 // Helper function to parse CSV lines with proper quote handling
 function parseCSVLine(line) {
@@ -59,6 +60,8 @@ function YouTubeEmbed({ videoId, title }) {
 }
 
 function Videos() {
+  const navigate = useNavigate();
+
   const [videos, setVideos] = useState([]);
   const [worksheets, setWorksheets] = useState([]);
 
@@ -228,7 +231,7 @@ function Videos() {
                               className="flex items-start justify-between p-2 sm:p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group cursor-pointer"
                               onClick={() => {
                                 const params = new URLSearchParams(worksheet).toString();
-                                window.location.href = `/worksheet/${wsIdx}?${params}`;
+                                navigate(`/worksheet/${wsIdx}?${params}`);
                               }}
                             >
                               <div className="flex-1 min-w-0 pr-2">
