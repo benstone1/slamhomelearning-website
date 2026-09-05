@@ -8,11 +8,23 @@ export default defineConfig({
 	plugins: [
 		react(),
 		{
-			name: 'copy-podcast-route',
+			name: 'copy-spa-routes',
 			closeBundle() {
 				const distDirectory = resolve('dist');
-				mkdirSync(resolve(distDirectory, 'podcast'), { recursive: true });
-				copyFileSync(resolve(distDirectory, 'index.html'), resolve(distDirectory, 'podcast/index.html'));
+				const routeDirectories = [
+					'about',
+					'math',
+					'reading',
+					'videos',
+					'podcast',
+					'parent-resources'
+				];
+
+				for (const routeDirectory of routeDirectories) {
+					const routePath = resolve(distDirectory, routeDirectory);
+					mkdirSync(routePath, { recursive: true });
+					copyFileSync(resolve(distDirectory, 'index.html'), resolve(routePath, 'index.html'));
+				}
 			}
 		}
 	],
