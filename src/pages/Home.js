@@ -77,7 +77,7 @@ function Home() {
             <img
               src="/images/SLAM%20Home%20Page%20Photo.with%20Stuffed%20Animalsjpeg.jpeg"
               alt="Children's learning space with books and stuffed animals"
-              className="w-full h-[420px] object-cover object-top rounded-3xl shadow-xl border border-gray-200"
+              className="w-full h-[420px] object-cover object-top rounded-3xl shadow-xl border border-gray-200 md:h-auto md:max-h-[520px] md:object-contain"
             />
           </motion.div>
         </div>
