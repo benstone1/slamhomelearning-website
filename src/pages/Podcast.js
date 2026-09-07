@@ -17,11 +17,6 @@ const episodes = [
     number: '02',
     title: "Understanding Your Child's Reading Progress",
     description: "How can you tell whether your child is on track with reading? I talk with Alexandra Needle, a Reading Specialist and Curriculum Designer with McGraw Hill Publishing, about how reading typically develops from kindergarten through second grade.",
-    points: [
-      'The reading skills children typically develop by the end of each grade',
-      'Signs that may prompt a teacher to have concerns about a child\'s progress',
-      'Simple activities you can do at home to support reading'
-    ]
   }
 ];
 
