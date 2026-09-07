@@ -9,14 +9,19 @@ const platforms = [
 
 const episodes = [
   {
-    number: '01',
+    number: '00',
     title: 'Welcome to From Classroom to Home',
     description: 'In this short introductory episode, I share a little about my background, why I created From Classroom to Home, and what listeners can expect from the podcast.'
   },
   {
-    number: '02',
+    number: '01',
     title: "Understanding Your Child's Reading Progress",
     description: "How can you tell whether your child is on track with reading? I talk with Alexandra Needle, a Reading Specialist and Curriculum Designer with McGraw Hill Publishing, about how reading typically develops from kindergarten through second grade.",
+  },
+  {
+    number: '02',
+    title: 'Helping Children Become Independent Learners',
+    description: "What do unpacking a backpack, organizing a desk, and working through a difficult task have to do with being ready to learn?  I’m joined by Allie Richardson, a veteran teacher with 14 years of experience, to talk about what independence looks like in kindergarten through second grade, why productive struggle is an important part of learning, and how parents can build these essential skills at home."
   }
 ];
 
