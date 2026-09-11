@@ -36,7 +36,7 @@ const episodes = [
     number: '02',
     title: 'Helping Children Become Independent Learners',
     description: "What do unpacking a backpack, organizing a desk, and working through a difficult task have to do with being ready to learn? I’m joined by Allie Richardson, a veteran teacher with 14 years of experience, to talk about what independence looks like in kindergarten through second grade, why productive struggle is an important part of learning, and how parents can build these essential skills at home.",
-    youtubeUrl: null
+    youtubeUrl: 'https://www.youtube.com/watch?v=LuRfeNA6oJo'
   }
 ];
 
