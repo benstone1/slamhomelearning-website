@@ -40,7 +40,13 @@ const episodes = [
   },
   {
     number: '03',
-    title: 'Navigating Friendships in K-2',
+    title: 'Building Math Skills by Playing Games',
+    description: 'Can playing games really help your child become stronger in math? I chat with Christine Chapuis, School-Based Mathematics Coach and Elementary Math Specialist, about how games support math learning in K-2 classrooms and how families can play simple games to build math skills at home.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=qIhtxf7EI4w'
+  },
+  {
+    number: '04',
+    title: 'Navigating Friendships',
     description: 'How do children learn to build friendships in the early elementary years? In this episode, I speak with Katy Boucher, a certified school counselor and founder of The Accord School, about how children develop friendship skills and how teachers and parents can support them.'
   }
 ];
