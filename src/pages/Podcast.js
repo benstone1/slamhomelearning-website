@@ -47,12 +47,7 @@ const episodes = [
   {
     number: '04',
     title: 'Navigating Friendships',
-    description: 'How do children learn to build friendships in the early elementary years? In this episode, I speak with Katy Boucher, a certified school counselor and founder of The Accord School, about how children develop friendship skills and how teachers and parents can support them.'
-  },
-  {
-    number: '05',
-    title: 'Helping Your Child with Friendships',
-    description: 'In this episode, I talk about practical ways parents can support children as they learn to navigate friendships, resolve conflicts, and build confidence in social situations at school and at home.',
+    description: 'How do children learn to build friendships in the early elementary years? In this episode, I speak with Katy Boucher, a certified school counselor and founder of The Accord School, about how children develop friendship skills and how teachers and parents can support them.',
     youtubeUrl: 'https://www.youtube.com/watch?v=u1SqMVtTEm4'
   }
 ];
