@@ -49,6 +49,12 @@ const episodes = [
     title: 'Helping Your Child with Friendships',
     description: 'How do children learn to build friendships in the early elementary years? In this episode, I speak with Katy Boucher, a certified school counselor and founder of The Accord School, about how children develop friendship skills and how teachers and parents can support them.',
     youtubeUrl: 'https://www.youtube.com/watch?v=u1SqMVtTEm4'
+  },
+  {
+    number: '05',
+    title: 'Why Independent Reading Matters',
+    description: 'What happens when children have time to put their reading skills into practice on their own? I’m joined by veteran first grade teacher Serina Sota to talk about independent reading in K–2, how children choose books, the value of rereading, and ways parents can encourage independent reading at home.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=M2bK4KbSORo'
   }
 ];
 
