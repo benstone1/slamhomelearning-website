@@ -55,6 +55,12 @@ const episodes = [
     title: 'Why Independent Reading Matters',
     description: 'What happens when children have time to put their reading skills into practice on their own? I’m joined by veteran first grade teacher Serina Sota to talk about independent reading in K–2, how children choose books, the value of rereading, and ways parents can encourage independent reading at home.',
     youtubeUrl: 'https://www.youtube.com/watch?v=M2bK4KbSORo'
+  },
+  {
+    number: '06',
+    title: 'Understanding the Value of Play',
+    description: 'How does play support children’s learning? In this episode, we explore the value of play and how it can help children learn.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=mBl-VGr7FOE'
   }
 ];
 
