@@ -59,7 +59,7 @@ const episodes = [
   {
     number: '06',
     title: 'Understanding the Value of Play',
-    description: 'How does play support children’s learning? In this episode, we explore the value of play and how it can help children learn.',
+    description: 'How does play support children’s learning? In this episode, I’m joined by Jesse Ilhardt, co-founder and executive director of VOCEL, to discuss what research tells us about play, how play-based learning can be incorporated into classrooms, and ways parents can encourage meaningful play at home.',
     youtubeUrl: 'https://www.youtube.com/watch?v=mBl-VGr7FOE'
   }
 ];
