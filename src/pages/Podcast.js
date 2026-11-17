@@ -65,7 +65,7 @@ const episodes = [
   {
     number: '07',
     title: 'Understanding How Math is Taught Today',
-    description: 'Have you ever looked at your child’s math work and wondered why they’re solving problems differently than you did in school? In this episode, I talk with K-5 Instructional Math Coach Michael Rosenblum about how math is being taught in today’s classrooms, why it’s important for children to understand and explain how they solve problems, and how parents can support their child at home.',
+    description: 'Have you ever looked at your child’s math work and wondered why they’re solving problems differently than you did in school? In this episode, I talk with K-5 Instructional Math Coach Michael Rosenblum about how math is being taught in today’s classrooms and how parents can support their child at home.',
     youtubeUrl: 'https://www.youtube.com/watch?v=Ntsl17h7hYE'
   }
 ];
