@@ -61,6 +61,12 @@ const episodes = [
     title: 'Understanding the Value of Play',
     description: 'How does play support children’s learning? In this episode, I’m joined by Jesse Ilhardt, co-founder and executive director of VOCEL, to discuss what research tells us about play, how play-based learning can be incorporated into classrooms, and ways parents can encourage meaningful play at home.',
     youtubeUrl: 'https://www.youtube.com/watch?v=mBl-VGr7FOE'
+  },
+  {
+    number: '07',
+    title: 'Understanding How Math is Taught Today',
+    description: 'Have you ever looked at your child’s math work and wondered why they’re solving problems differently than you did in school? In this episode, I talk with K-5 Instructional Math Coach Michael Rosenblum about how math is being taught in today’s classrooms, why it’s important for children to understand and explain how they solve problems, and how parents can support their child at home.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=Ntsl17h7hYE'
   }
 ];
 

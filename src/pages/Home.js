@@ -40,14 +40,11 @@ function Home() {
             >
               SLAM
             </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            <p
               className="text-xl text-gray-700 max-w-xl leading-relaxed mb-6"
             >
               SLAM (Supporting Literacy And Math) provides Kindergarten through Second Grade families with tools and resources to make learning at home fun.
-            </motion.p>
+            </p>
             <div className="mt-6 flex flex-col items-start gap-3">
               <div className="flex flex-wrap gap-3">
                 <a href="/reading" className="px-4 py-2 rounded-xl shadow text-white hover:opacity-90 transition-opacity" style={{backgroundColor: '#1E90D2'}}>
