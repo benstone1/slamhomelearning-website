@@ -34,7 +34,7 @@ function About() {
               SLAM was originally created to address the needs of the youngest learners from kindergarten 
               through second grade, who were at risk of falling behind. A community-based afterschool 
               program was created which provided small-group instruction in reading and math giving students 
-              a chance to strengthen their skills, while also fostering a sense of what it means to be a in a 
+              a chance to strengthen their skills, while also fostering a sense of what it means to be in a 
               learning community. In addition to math and reading skills, students also practiced soft skills 
               such as waiting patiently and sharing materials, skills often not prevalent in one-to-one tutoring 
               programs.
@@ -77,7 +77,7 @@ function About() {
               Education Plan) process to help them achieve their goals.
             </p>
             <p>
-              Her commitment to educational empowerment extend to roles as a board member of VOCEL (Viewing Our Children as 
+              Her commitment to educational empowerment extends to roles as a board member of VOCEL (Viewing Our Children as 
               Emerging Leaders) and the Adult Down Syndrome Center (ADSC).
             </p>
             <p>

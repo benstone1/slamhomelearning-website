@@ -28,7 +28,7 @@ function Navbar() {
             <img 
               src="/images/slam-logo_new.png" 
               alt="SLAM - Supporting Literacy And Math" 
-              className="h-16 w-auto"
+              className="h-12 w-auto"
             />
           </Link>
 
