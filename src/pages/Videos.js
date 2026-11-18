@@ -118,11 +118,12 @@ function Videos() {
 
   // Function to find worksheets related to a video
   const getRelatedWorksheets = (videoTitle) => {
-    return worksheets.filter(worksheet => 
-      worksheet['Video Title'] && 
-      worksheet['Video Title'].trim() !== '' && 
-      worksheet['Video Title'] !== 'n/a' &&
-      worksheet['Video Title'].toLowerCase().includes(videoTitle.toLowerCase())
+    // A worksheet's "Video Title" may list several videos separated by "|"
+    const target = videoTitle.trim().toLowerCase();
+    return worksheets.filter(worksheet =>
+      (worksheet['Video Title'] || '')
+        .split('|')
+        .some(title => title.trim().toLowerCase() === target)
     );
   };
 

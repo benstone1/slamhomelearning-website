@@ -41,6 +41,7 @@ function WorksheetDetail() {
 
   const [pdfExists, setPdfExists] = useState(null); // null = checking, true/false = result
   const [videoUrl, setVideoUrl] = useState(null);
+  const [videoTitle, setVideoTitle] = useState(null);
   
   // Check if PDF exists when component loads
   useEffect(() => {
@@ -60,17 +61,18 @@ function WorksheetDetail() {
         .then(res => res.text())
         .then(text => {
           const lines = text.split('\n').filter(line => line.trim());
-          const headers = lines[0].split(',');
-          
+          // "Video Title" may list several videos separated by "|"; show the first one found
+          const wanted = worksheet['Video Title'].split('|').map(t => t.trim()).filter(Boolean);
+          const links = {};
           for (let i = 1; i < lines.length; i++) {
             const values = lines[i].split(',');
             const title = values[0]?.trim();
-            const link = values[1]?.trim();
-            
-            if (title && title === worksheet['Video Title'].trim()) {
-              setVideoUrl(link);
-              break;
-            }
+            if (title) links[title] = values[1]?.trim();
+          }
+          const match = wanted.find(t => links[t]);
+          if (match) {
+            setVideoTitle(match);
+            setVideoUrl(links[match]);
           }
         })
         .catch(error => {
@@ -221,11 +223,11 @@ function WorksheetDetail() {
           {worksheet['Video Title'] && worksheet['Video Title'] !== 'n/a' && worksheet['Video Title'].trim() !== '' && (
             <div className="mb-8">
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">Related Video</h3>
-              <p className="text-gray-700 mb-4 text-lg">{worksheet['Video Title']}</p>
+              <p className="text-gray-700 mb-4 text-lg">{videoTitle || worksheet['Video Title']}</p>
               {videoUrl ? (
-                <YouTubeEmbed 
-                  videoId={getYouTubeVideoId(videoUrl)} 
-                  title={worksheet['Video Title']} 
+                <YouTubeEmbed
+                  videoId={getYouTubeVideoId(videoUrl)}
+                  title={videoTitle}
                 />
               ) : (
                 <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
